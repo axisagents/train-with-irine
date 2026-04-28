@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Train With Irine — Get Fit Online</title>
+  <meta name="description" content="Online & in-person fitness coaching by Irine Rose — Miss Kerala 2024 competitor & powerlifting coach. Find your perfect transformation program."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1A1A1A",
+            secondary: "#8B7355",
+            bg: "#F5F0EB",
+          },
+          fontFamily: {
+            headline: ["Playfair Display", "serif"],
+            body: ["Manrope", "sans-serif"],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    html { scroll-behavior: smooth; }
+
+    /* Quiz steps */
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; }
+
+    /* Progress bar */
+    .progress-bar { transition: width 0.4s ease; }
+
+    /* Card selection */
+    .goal-card input:checked ~ .card-inner { border-color: #8B7355; background: #fff; box-shadow: 0 4px 16px rgba(139,115,85,0.15); }
+    .goal-card input:checked ~ .card-inner .card-icon { color: #8B7355; }
+    .goal-card:hover .card-inner { border-color: rgba(139,115,85,0.5); background: #fff; }
+
+    /* Recommended package highlight */
+    .pkg-recommended { border-color: #8B7355 !important; }
+    .pkg-badge { display: none; }
+    .pkg-recommended .pkg-badge { display: block; }
+
+    /* Mobile menu */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    #mobile-menu.open { max-height: 400px; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.4s ease forwards; }
+  </style>
+</head>
+
+<body class="bg-bg text-primary font-body antialiased">
+
+<!-- ===== NAV ===== -->
+<nav class="bg-bg border-b border-primary/10 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex flex-col leading-none">
+      <span class="font-headline text-lg sm:text-2xl font-black uppercase tracking-tighter">Train With Irine</span>
+      <span class="text-xs italic text-primary/60 font-headline">Get fit online</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="text-sm hover:text-secondary transition-colors">About</a>
+      <a href="#questionnaire" class="text-sm hover:text-secondary transition-colors">Programs</a>
+      <a href="#results" class="text-sm hover:text-secondary transition-colors">Results</a>
+      <a href="#questionnaire" class="bg-primary text-bg px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">
+        START NOW
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button id="hamburger" class="md:hidden" aria-label="Open menu">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu">
+    <div class="px-4 pb-4 flex flex-col gap-4 border-t border-primary/10 pt-4">
+      <a href="#about" class="text-sm font-semibold" onclick="closeMobileMenu()">About</a>
+      <a href="#questionnaire" class="text-sm font-semibold" onclick="closeMobileMenu()">Programs</a>
+      <a href="#results" class="text-sm font-semibold" onclick="closeMobileMenu()">Results</a>
+      <a href="#questionnaire" onclick="closeMobileMenu()" class="bg-primary text-bg text-center py-3 text-xs font-bold uppercase tracking-wider">START NOW</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-bg">
+  <!-- Background image (right side) -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div class="absolute right-0 top-0 bottom-0 w-full md:w-1/2 h-full bg-cover bg-center opacity-60 mix-blend-multiply grayscale contrast-125"
+      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsw3HH09-eL_I0mR0AVXPfJpDOVS4UCw_UzpWKufNPupRLsQfKWFnNxX-zUqK5BCSX94WW06J0nwrnNtCGyIXNsH5slRyku7yBO7pfb6lVFqOwCZp-LkwGu6H2tbhxEpXGMk748rYdMu_vyjUTSqcMAJpqQzzCi1tMIgc9nmpHh-bwQiS2oSuOGbWJPSoSQhnQ4HVSVxH3dav39PqqUWzIc3fRzYBbYlvjMbGx2EILa5czy7cP70Hp1Uc9tVAnA24DX7hTtuAjacg');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-bg via-bg/85 to-transparent md:via-bg/60"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-32 w-full">
+    <div class="max-w-2xl">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Miss Kerala 2024 Competitor · Powerlifting Coach</p>
+      <h1 class="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tighter uppercase mb-6">
+        Your Body.<br/>
+        Your Discipline.<br/>
+        <span class="text-secondary">Your Transformation.</span>
+      </h1>
+      <p class="text-base sm:text-xl font-body font-light mb-8 text-primary/75 max-w-xl">
+        Online &amp; in-person coaching by Irine Rose — Kerala-based transformation specialist. Real coaching, real results.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="#questionnaire" class="bg-primary text-bg px-7 py-4 font-bold uppercase tracking-wider text-xs text-center hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+          FIND MY PROGRAM <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+        <a href="#programs" class="border-2 border-primary text-primary px-7 py-4 font-bold uppercase tracking-wider text-xs text-center hover:bg-primary hover:text-bg transition-colors">
+          SEE ALL PROGRAMS
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF BAR ===== -->
+<div class="border-y border-primary/10 bg-white/60 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-4 gap-6 divide-x divide-primary/10">
+    <div class="text-center px-2">
+      <span class="block font-headline text-2xl font-bold text-secondary">9,000+</span>
+      <span class="text-xs uppercase tracking-wider text-primary/60">Followers</span>
+    </div>
+    <div class="text-center px-2">
+      <span class="block font-headline text-2xl font-bold text-secondary">3</span>
+      <span class="text-xs uppercase tracking-wider text-primary/60">Programs</span>
+    </div>
+    <div class="text-center px-2">
+      <span class="block font-headline text-2xl font-bold text-secondary">Kerala</span>
+      <span class="text-xs uppercase tracking-wider text-primary/60">& Online</span>
+    </div>
+    <div class="text-center px-2">
+      <span class="block font-headline text-2xl font-bold text-secondary">100%</span>
+      <span class="text-xs uppercase tracking-wider text-primary/60">Customised</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="py-20 bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">About Irine</p>
+        <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Built Under Pressure. Shaped By Discipline.</h2>
+        <p class="text-primary/70 leading-relaxed mb-4">
+          Irine Rose is a certified transformation coach and competitive powerlifter from Kerala, India. Having competed in Miss Kerala 2024 and trained at @zerofitnessstudio, she combines the rigour of competitive sport with the precision of personalised coaching.
+        </p>
+        <p class="text-primary/70 leading-relaxed mb-8">
+          Her approach is direct and results-driven — no fluff, no trends. Just science-backed programming, deep nutrition coaching, and the accountability that actually works.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-secondary">verified</span>
+            <span class="text-sm font-semibold">Miss Kerala 2024 Competitor</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-secondary">fitness_center</span>
+            <span class="text-sm font-semibold">Powerlifting Background</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/5 rounded-2xl p-8 border border-primary/10">
+        <blockquote class="font-headline text-2xl italic font-medium mb-4">
+          "Influencer? No. Coach."
+        </blockquote>
+        <p class="text-sm text-primary/60 leading-relaxed">
+          Irine's content focuses on real transformations, form and technique, and honest nutrition guidance. She works with a small number of clients to ensure every programme gets her full attention.
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <span class="material-symbols-outlined text-secondary text-2xl">instagram</span>
+          <a href="https://instagram.com/trainwithirine" target="_blank" class="text-secondary font-bold text-sm hover:underline">@trainwithirine</a>
+          <span class="text-primary/40 text-xs">· 9,285 followers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section id="questionnaire" class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Quick Match</p>
+      <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Find Your Perfect Program</h2>
+      <p class="text-primary/60 text-base">Answer 3 quick questions and we'll match you to the right coaching package.</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="mb-8">
+      <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-primary/40 mb-2">
+        <span id="step-label">Step 1 of 3</span>
+        <span id="step-pct">33%</span>
+      </div>
+      <div class="h-1 bg-primary/10 rounded-full">
+        <div id="progress-bar" class="progress-bar h-1 bg-secondary rounded-full" style="width: 33%"></div>
+      </div>
+    </div>
+
+    <!-- Quiz container -->
+    <div id="quiz-container" class="bg-bg rounded-2xl p-6 sm:p-10 border border-primary/5 shadow-sm">
+
+      <!-- Step 1: Goal -->
+      <div class="quiz-step active fade-in" id="step-1">
+        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">What is your primary fitness goal?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="goal" value="lose-weight" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">monitor_weight</span>
+              <div class="font-bold text-base mb-1">Lose weight &amp; tone up</div>
+              <div class="text-xs text-primary/55">Shed fat and build a lean physique.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="goal" value="build-strength" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">fitness_center</span>
+              <div class="font-bold text-base mb-1">Build strength &amp; muscle</div>
+              <div class="text-xs text-primary/55">Increase power and muscle mass.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="goal" value="competition" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">emoji_events</span>
+              <div class="font-bold text-base mb-1">Competition prep</div>
+              <div class="text-xs text-primary/55">Training for bodybuilding or posing stage.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="goal" value="fitness" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">directions_run</span>
+              <div class="font-bold text-base mb-1">Improve overall fitness</div>
+              <div class="text-xs text-primary/55">Build consistency and general health.</div>
+            </div>
+          </label>
+        </div>
+        <button onclick="goToStep(2)" class="w-full bg-primary text-bg py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+          NEXT <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+      </div>
+
+      <!-- Step 2: Experience -->
+      <div class="quiz-step" id="step-2">
+        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">What is your current fitness experience?</h3>
+        <div class="flex flex-col gap-3 mb-8">
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="experience" value="beginner" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">emoji_people</span>
+              <div class="font-bold text-base mb-1">Beginner</div>
+              <div class="text-xs text-primary/55">New to structured training or just getting started.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="experience" value="intermediate" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">trending_up</span>
+              <div class="font-bold text-base mb-1">Intermediate</div>
+              <div class="text-xs text-primary/55">Training consistently for 6+ months, ready to level up.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="experience" value="advanced" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">military_tech</span>
+              <div class="font-bold text-base mb-1">Advanced / Competitive</div>
+              <div class="text-xs text-primary/55">Experienced athlete or preparing for competition.</div>
+            </div>
+          </label>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="goToStep(1)" class="flex-1 border-2 border-primary text-primary py-4 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
+            BACK
+          </button>
+          <button onclick="goToStep(3)" class="flex-1 bg-primary text-bg py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+            NEXT <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Commitment -->
+      <div class="quiz-step" id="step-3">
+        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">How much support are you looking for?</h3>
+        <div class="flex flex-col gap-3 mb-8">
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="commitment" value="kickstart" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">bolt</span>
+              <div class="font-bold text-base mb-1">Quick start — just the plan</div>
+              <div class="text-xs text-primary/55">I want a solid programme to follow on my own.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="commitment" value="transformation" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">groups</span>
+              <div class="font-bold text-base mb-1">Guided transformation</div>
+              <div class="text-xs text-primary/55">I want regular check-ins, WhatsApp support &amp; accountability.</div>
+            </div>
+          </label>
+          <label class="goal-card cursor-pointer">
+            <input type="radio" name="commitment" value="consistency" class="sr-only"/>
+            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
+              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">diamond</span>
+              <div class="font-bold text-base mb-1">Full premium coaching</div>
+              <div class="text-xs text-primary/55">Live sessions, daily support, deep nutrition coaching &amp; everything.</div>
+            </div>
+          </label>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="goToStep(2)" class="flex-1 border-2 border-primary text-primary py-4 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
+            BACK
+          </button>
+          <button onclick="showResult()" class="flex-1 bg-secondary text-white py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+            SEE MY MATCH <span class="material-symbols-outlined text-sm">auto_awesome</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="quiz-step" id="step-result">
+        <div class="text-center mb-8">
+          <span class="material-symbols-outlined text-5xl text-secondary mb-3 block">auto_awesome</span>
+          <h3 class="font-headline text-2xl sm:text-3xl font-bold mb-2">Your Perfect Match</h3>
+          <p class="text-primary/60 text-sm">Based on your answers, we recommend:</p>
+        </div>
+        <div id="result-card" class="border-2 border-secondary bg-white rounded-2xl p-6 sm:p-8 mb-6 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full">
+            Recommended for You
+          </div>
+          <h4 id="result-title" class="font-headline text-2xl font-bold mt-2 mb-1"></h4>
+          <p id="result-price" class="text-secondary font-bold text-3xl font-headline mb-4"></p>
+          <ul id="result-features" class="space-y-2 mb-6 text-sm"></ul>
+          <a href="https://instagram.com/trainwithirine" target="_blank"
+            class="block w-full bg-primary text-bg text-center py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity">
+            DM 'CHANGE' TO BEGIN
+          </a>
+        </div>
+        <button onclick="goToStep(1)" class="w-full border-2 border-primary text-primary py-3 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
+          Retake Quiz
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMS ===== -->
+<section id="programs" class="py-20 bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-14">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Coaching Packages</p>
+      <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Choose Your Program</h2>
+      <p class="text-primary/60 text-base max-w-xl mx-auto">Select the commitment level that matches your goals and lifestyle. All plans are 100% customised — no templates.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+      <!-- 4 Week Kickstart -->
+      <div class="bg-white rounded-2xl border border-primary/8 p-7 flex flex-col hover:shadow-xl transition-shadow duration-300">
+        <div class="mb-6">
+          <h3 class="font-headline text-2xl font-bold mb-1">4 Week Kickstart</h3>
+          <p class="text-primary/55 text-sm">Perfect to establish foundations &amp; see early results.</p>
+        </div>
+        <div class="mb-7">
+          <span class="font-headline text-4xl font-bold">₹4,000</span>
+          <span class="text-primary/45 text-sm"> / 4 weeks</span>
+        </div>
+        <ul class="space-y-3 mb-8 flex-grow">
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Customised workout plan &amp; diet</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Form &amp; technique notes</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Reference videos included</span></li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank"
+          class="block w-full border-2 border-primary text-primary text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-bg transition-colors">
+          GET STARTED
+        </a>
+      </div>
+
+      <!-- 3 Month Transformation (Most Popular) -->
+      <div class="bg-white rounded-2xl border-2 border-secondary p-7 flex flex-col relative shadow-2xl md:scale-105 z-10">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white px-5 py-1.5 text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
+          Most Popular
+        </div>
+        <div class="mb-6 mt-2">
+          <h3 class="font-headline text-2xl font-bold mb-1">3 Month Transformation</h3>
+          <p class="text-primary/55 text-sm">Complete lifestyle overhaul for lasting, visible change.</p>
+        </div>
+        <div class="mb-7">
+          <span class="font-headline text-4xl font-bold">₹15,000</span>
+          <span class="text-primary/45 text-sm"> / 3 months</span>
+        </div>
+        <ul class="space-y-3 mb-8 flex-grow">
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Customised diet &amp; workout plan</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Progress tracking</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Weekly check-in call &amp; WhatsApp assistance</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>6-week progressive plan</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Form, technique notes &amp; reference videos</span></li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank"
+          class="block w-full bg-primary text-bg text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-opacity">
+          START TRANSFORMATION
+        </a>
+      </div>
+
+      <!-- 3 Month Consistency -->
+      <div class="bg-white rounded-2xl border border-primary/8 p-7 flex flex-col hover:shadow-xl transition-shadow duration-300">
+        <div class="mb-6">
+          <h3 class="font-headline text-2xl font-bold mb-1">3 Month Consistency</h3>
+          <p class="text-primary/55 text-sm">Premium all-in coaching for serious athletes &amp; competitors.</p>
+        </div>
+        <div class="mb-7">
+          <span class="font-headline text-4xl font-bold">₹25,000</span>
+          <span class="text-primary/45 text-sm"> / 3 months</span>
+        </div>
+        <ul class="space-y-3 mb-8 flex-grow">
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>3 live sessions every 4 weeks (form &amp; technique)</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Deep nutrition coaching — meal timing, grocery list, weekly calls, recipe videos</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Daily message support &amp; weekly check-in calls from Nutritionist &amp; Trainer</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Diet monitoring &amp; progress tracking</span></li>
+          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Plans altered accordingly</span></li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank"
+          class="block w-full border-2 border-primary text-primary text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-bg transition-colors">
+          GET STARTED
+        </a>
+      </div>
+
+    </div>
+
+    <p class="text-center text-sm text-primary/50 italic mt-10">
+      Not sure which to pick? <a href="#questionnaire" class="text-secondary font-bold underline">Take the 3-question quiz ↑</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== RESULTS CALLOUT ===== -->
+<section id="results" class="py-20 bg-primary text-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Real Results</p>
+    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Transformation Starts With a DM</h2>
+    <p class="text-bg/65 text-base max-w-xl mx-auto mb-10">
+      Irine's client transformations are documented on Instagram — real people, real change. Every journey starts with a single message.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://instagram.com/trainwithirine" target="_blank"
+        class="bg-secondary text-white px-8 py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-base">instagram</span>
+        VIEW RESULTS @trainwithirine
+      </a>
+      <a href="#questionnaire"
+        class="border-2 border-bg/30 text-bg px-8 py-4 font-bold uppercase tracking-wider text-xs hover:bg-bg hover:text-primary transition-colors">
+        FIND MY PROGRAM
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-primary text-bg border-t border-secondary/20 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-10">
+      <!-- Brand -->
+      <div>
+        <span class="font-headline text-xl font-black uppercase tracking-tight block mb-2">Train With Irine</span>
+        <span class="text-xs italic text-bg/50 font-headline block mb-4">Get fit online</span>
+        <p class="text-bg/50 text-sm leading-relaxed">Real coaching, real results. Kerala &amp; worldwide.</p>
+      </div>
+      <!-- Links -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-bg/60">
+          <li><a href="#about" class="hover:text-secondary transition-colors">About Irine</a></li>
+          <li><a href="#questionnaire" class="hover:text-secondary transition-colors">Find My Program</a></li>
+          <li><a href="#programs" class="hover:text-secondary transition-colors">All Programs</a></li>
+          <li><a href="https://instagram.com/trainwithirine" target="_blank" class="hover:text-secondary transition-colors">Instagram</a></li>
+        </ul>
+      </div>
+      <!-- CTA -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Start Today</h4>
+        <div class="bg-secondary/10 border border-secondary/30 rounded-xl p-5">
+          <p class="text-bg font-bold text-lg font-headline mb-1">DM 'CHANGE'</p>
+          <p class="text-bg/55 text-xs mb-3">to begin your transformation</p>
+          <a href="https://instagram.com/trainwithirine" target="_blank"
+            class="text-secondary font-bold text-sm hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">instagram</span>
+            @trainwithirine
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-secondary/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-bg/30">
+      <span>© 2024 Train With Irine. All Rights Reserved.</span>
+      <span>Built with ❤️ for your transformation.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // ---- Mobile menu ----
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+
+  // ---- Quiz logic ----
+  const steps = { 1: 33, 2: 66, 3: 100 };
+
+  function goToStep(n) {
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    const next = document.getElementById('step-' + n);
+    next.classList.add('active');
+    next.classList.remove('fade-in');
+    void next.offsetWidth; // reflow
+    next.classList.add('fade-in');
+
+    document.getElementById('progress-bar').style.width = steps[n] + '%';
+    document.getElementById('step-label').textContent = 'Step ' + n + ' of 3';
+    document.getElementById('step-pct').textContent = steps[n] + '%';
+  }
+
+  function showResult() {
+    const goal = document.querySelector('input[name="goal"]:checked')?.value;
+    const experience = document.querySelector('input[name="experience"]:checked')?.value;
+    const commitment = document.querySelector('input[name="commitment"]:checked')?.value;
+
+    const packages = {
+      kickstart: {
+        title: '4 Week Kickstart',
+        price: '₹4,000',
+        duration: '4 weeks',
+        features: [
+          'Customised workout plan & diet',
+          'Form & technique notes',
+          'Reference videos included',
+        ]
+      },
+      transformation: {
+        title: '3 Month Transformation',
+        price: '₹15,000',
+        duration: '3 months',
+        features: [
+          'Customised diet & workout plan',
+          'Progress tracking',
+          'Weekly check-in call & WhatsApp assistance',
+          '6-week progressive plan',
+          'Form, technique notes & reference videos',
+        ]
+      },
+      consistency: {
+        title: '3 Month Consistency',
+        price: '₹25,000',
+        duration: '3 months',
+        features: [
+          '3 live sessions every 4 weeks',
+          'Deep nutrition coaching — meal timing, grocery list, recipe videos',
+          'Daily message support & weekly check-in calls',
+          'Diet monitoring & progress tracking',
+          'Plans altered accordingly',
+        ]
+      }
+    };
+
+    // Smart recommendation logic
+    let rec = 'transformation'; // default
+    if (commitment === 'kickstart' || experience === 'beginner') rec = 'kickstart';
+    else if (commitment === 'consistency' || goal === 'competition' || experience === 'advanced') rec = 'consistency';
+    else rec = 'transformation';
+
+    const pkg = packages[rec];
+    document.getElementById('result-title').textContent = pkg.title;
+    document.getElementById('result-price').textContent = pkg.price + ' / ' + pkg.duration;
+    document.getElementById('result-features').innerHTML = pkg.features
+      .map(f => `<li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>${f}</span></li>`)
+      .join('');
+
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    const result = document.getElementById('step-result');
+    result.classList.add('active', 'fade-in');
+    document.getElementById('progress-bar').style.width = '100%';
+    document.getElementById('step-label').textContent = 'Complete!';
+    document.getElementById('step-pct').textContent = '100%';
+  }
+</script>
+</body>
+</html>
