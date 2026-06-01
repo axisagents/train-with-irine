@@ -1,0 +1,20 @@
+# Internal working materials — not part of the deployed site
+/_archive/
+/branding/
+/documents/
+/proposal-slides/
+/prototypes/
+/scripts/
+/train-with-irine/
+/.claude/
+
+# Dependencies
+node_modules/
+
+# Internal assets not used by the live site
+/assets/Irine_Website_QA.pages
+/assets/packages.jpeg
+
+# OS / editor cruft
+.DS_Store
+.vercel

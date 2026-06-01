@@ -1,603 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Train With Irine — Get Fit Online</title>
-  <meta name="description" content="Online & in-person fitness coaching by Irine Rose — Miss Kerala 2024 competitor & powerlifting coach. Find your perfect transformation program."/>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <script id="tailwind-config">
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#1A1A1A",
-            secondary: "#8B7355",
-            bg: "#F5F0EB",
-          },
-          fontFamily: {
-            headline: ["Helvetica Neue", "Helvetica"],
-            body: ["Helvetica Neue", "Helvetica"],
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    * { font-family: "Helvetica Neue", Helvetica; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    html { scroll-behavior: smooth; }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Train With Irine — Personal coaching, reimagined.</title>
+<meta name="description" content="Fitness simplified for real life. 1:1 coaching with Irine — Kerala-based, clients in 12+ countries. Miss Kerala 2024 competitor, powerlifting background."/>
+<link rel="canonical" href="https://trainwithirine.com/"/>
+<meta name="theme-color" content="#FAF7F2"/>
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg"/>
+<link rel="apple-touch-icon" href="assets/logo/favicon.svg"/>
+<link rel="mask-icon" href="assets/logo/symbol.svg" color="#1A1815"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 
-    /* Quiz steps */
-    .quiz-step { display: none; }
-    .quiz-step.active { display: block; }
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
 
-    /* Progress bar */
-    .progress-bar { transition: width 0.4s ease; }
+<style>
+:root {
+  --paper: #FAF7F2;  --paper-2: #F2EDE4;  --paper-3: #EFEAE0;
+  --ink: #1A1815;    --ink-2: #4A453E;    --ink-3: #8A8479;
+  --line: #E5DFD3;
+  --blush: #F4D5C5;  --sand: #E8DCC4;  --sage: #C8D5BD;  --sky: #C5D9E8;
+  --lilac: #DDD0E5;  --clay: #E8B89C;  --terracotta: #B8674C;
+  --olive: #8A9A6B;  --plum: #8A6E84;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --header-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
 
-    /* Card selection */
-    .goal-card input:checked ~ .card-inner { border-color: #8B7355; background: #fff; box-shadow: 0 4px 16px rgba(139,115,85,0.15); }
-    .goal-card input:checked ~ .card-inner .card-icon { color: #8B7355; }
-    .goal-card:hover .card-inner { border-color: rgba(139,115,85,0.5); background: #fff; }
+*,*::before,*::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
 
-    /* Recommended package highlight */
-    .pkg-recommended { border-color: #8B7355 !important; }
-    .pkg-badge { display: none; }
-    .pkg-recommended .pkg-badge { display: block; }
+.display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+.italic-d { font-family: var(--font-display); font-style: italic; font-weight: 400; }
+.mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 500;
+}
+@media (max-width: 640px) { .eyebrow { font-size: 10px; letter-spacing: 0.2em; } }
 
-    /* Mobile menu */
-    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    #mobile-menu.open { max-height: 400px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .wrap { padding: 0 20px; } }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-in { animation: fadeIn 0.4s ease forwards; }
-  </style>
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 32px; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .15s ease;
+  white-space: nowrap; min-height: 52px;
+}
+.btn:active { transform: scale(0.98); }
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--paper { background: var(--paper); color: var(--ink); }
+.btn--terracotta { background: var(--terracotta); color: var(--paper); }
+.btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--outline-light { background: transparent; color: var(--paper); border-color: rgba(250,247,242,0.45); }
+@media (hover: hover) {
+  .btn--primary:hover { background: var(--terracotta); }
+  .btn--paper:hover { background: var(--clay); }
+  .btn--terracotta:hover { background: var(--ink); }
+  .btn--secondary:hover { background: var(--ink); color: var(--paper); }
+  .btn--outline-light:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+}
+@media (max-width: 640px) {
+  .btn { padding: 16px 24px; font-size: 13px; min-height: 48px; }
+}
+
+/* ===== Nav ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding-top: var(--safe-top);
+  transition: background .3s ease, border-color .3s ease;
+}
+.nav--scrolled {
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav--dark .brand__name, .nav--dark .nav__links a { color: var(--paper); }
+.nav--dark .brand__tag { color: rgba(250,247,242,0.7); }
+.nav--scrolled.nav--dark .brand__name { color: var(--ink); }
+.nav--scrolled.nav--dark .brand__tag { color: var(--ink-3); }
+.nav--scrolled.nav--dark .nav__links a { color: var(--ink-2); }
+
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 32px; max-width: 1280px; margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.brand__mark { width: 34px; height: auto; flex: none; color: var(--ink); }
+.nav--dark .brand__mark { color: var(--paper); }
+.nav--scrolled.nav--dark .brand__mark { color: var(--ink); }
+.brand__text { display: flex; align-items: baseline; gap: 10px; }
+.brand__name {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.32em;
+  text-transform: uppercase; font-weight: 500; color: var(--ink);
+}
+.brand__tag { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--ink-3); line-height: 1; }
+.nav__links { display: flex; align-items: center; gap: 36px; }
+.nav__links a { font-size: 13px; color: var(--ink-2); font-weight: 500; transition: color .2s; }
+@media (hover: hover) { .nav__links a:hover { color: var(--terracotta); } }
+.nav__cta { padding: 10px 18px; font-size: 12px; min-height: 0; }
+
+.hamburger { display: none; padding: 10px; color: inherit; }
+@media (max-width: 820px) {
+  .nav__inner { padding-left: 20px; padding-right: 20px; }
+  .nav__links {
+    display: none;
+    position: fixed; left: 0; right: 0;
+    top: calc(var(--header-h) + var(--safe-top)); bottom: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--paper); padding: 32px 24px; overflow-y: auto;
+  }
+  .nav__links.open { display: flex; }
+  .nav__links a {
+    padding: 18px 0; border-bottom: 1px solid var(--line);
+    font-size: 22px; color: var(--ink);
+    font-family: var(--font-display); font-weight: 500; line-height: 1.3;
+  }
+  .nav__links .nav__cta {
+    margin-top: 24px; align-self: stretch;
+    padding: 16px 24px; font-size: 14px; min-height: 52px; border-bottom: none;
+    font-family: var(--font-sans); font-size: 14px;
+  }
+  .hamburger { display: block; }
+}
+@media (max-width: 480px) { .brand__tag { display: none; } }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: flex-end;
+  color: var(--paper); overflow: hidden;
+}
+.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) saturate(0.9) brightness(0.82); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__bg img { animation: ken 18s ease-out infinite alternate; }
+}
+@keyframes ken { from { transform: scale(1); } to { transform: scale(1.08); } }
+.hero__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,24,21,0.55) 0%, rgba(26,24,21,0.15) 30%, rgba(26,24,21,0.05) 50%, rgba(26,24,21,0.7) 100%);
+}
+.hero__inner {
+  position: relative; z-index: 2; width: 100%;
+  padding: calc(120px + var(--safe-top)) 0 64px;
+}
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 8px 16px; border-radius: 999px;
+  background: rgba(250,247,242,0.12);
+  border: 1px solid rgba(250,247,242,0.25);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 28px;
+}
+.hero__eyebrow .eyebrow { color: var(--paper); }
+.hero__dot { width: 6px; height: 6px; border-radius: 999px; background: var(--clay); }
+.hero__h1 {
+  margin: 0;
+  font-family: var(--font-display); font-size: clamp(44px, 9vw, 132px);
+  font-weight: 400; line-height: 0.95; letter-spacing: -0.02em;
+  color: var(--paper); max-width: 14ch;
+}
+.hero__h1 em { font-style: italic; color: var(--clay); }
+.hero__lede {
+  margin: 28px 0 0;
+  font-size: clamp(16px, 2vw, 20px); line-height: 1.55;
+  color: rgba(250,247,242,0.88); max-width: 540px; font-weight: 300;
+}
+.hero__cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+.hero__sub {
+  margin-top: 22px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(250,247,242,0.7);
+}
+.hero__scroll {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(250,247,242,0.7);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero__scroll-line { width: 1px; height: 32px; background: linear-gradient(to bottom, transparent, rgba(250,247,242,0.7)); }
+@media (max-width: 640px) {
+  .hero__inner { padding: calc(100px + var(--safe-top)) 0 96px; }
+  .hero__scroll { display: none; }
+  .hero__cta .btn { flex: 1 1 calc(50% - 6px); min-width: 0; }
+}
+
+/* ===== Stats ===== */
+.stats { background: var(--ink); color: var(--paper); border-top: 1px solid rgba(250,247,242,0.08); }
+.stats__inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stats__item { padding: 36px 28px; border-right: 1px solid rgba(250,247,242,0.08); display: flex; flex-direction: column; gap: 4px; }
+.stats__item:last-child { border-right: none; }
+.stats__num { font-family: var(--font-display); font-style: italic; font-size: 56px; line-height: 0.9; color: var(--clay); font-weight: 400; }
+.stats__label {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(250,247,242,0.6); margin-top: 8px;
+}
+@media (max-width: 820px) {
+  .stats__inner { grid-template-columns: 1fr 1fr; }
+  .stats__item:nth-child(2) { border-right: none; }
+  .stats__item:nth-child(1), .stats__item:nth-child(2) { border-bottom: 1px solid rgba(250,247,242,0.08); }
+  .stats__num { font-size: 44px; }
+  .stats__item { padding: 28px 20px; }
+}
+
+/* ===== Sections ===== */
+.section { padding: 120px 0; position: relative; }
+.section--paper2 { background: var(--paper-2); }
+.section--paper3 { background: var(--paper-3); }
+.section--ink { background: var(--ink); color: var(--paper); }
+.section--ink .eyebrow { color: var(--clay); }
+@media (max-width: 820px) { .section { padding: 80px 0; } }
+
+.section-head { max-width: 720px; margin-bottom: 64px; }
+.section-head__title {
+  margin: 14px 0 0;
+  font-family: var(--font-display); font-size: clamp(36px, 6vw, 84px);
+  font-weight: 400; line-height: 1; letter-spacing: -0.015em;
+}
+.section-head__title em { font-style: italic; color: var(--terracotta); }
+.section--ink .section-head__title em { color: var(--clay); }
+.section-head__sub {
+  margin: 24px 0 0; font-size: 18px; line-height: 1.55;
+  color: var(--ink-2); max-width: 540px; font-weight: 300;
+}
+.section--ink .section-head__sub { color: rgba(250,247,242,0.75); }
+@media (max-width: 820px) {
+  .section-head { margin-bottom: 40px; }
+  .section-head__sub { font-size: 16px; }
+}
+
+/* ===== Mosaic ===== */
+.mosaic {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-rows: 380px 380px;
+  gap: 16px;
+}
+.mfeat {
+  position: relative; border-radius: 20px; overflow: hidden;
+  background: var(--paper-3); padding: 32px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  color: var(--ink); transition: transform .3s ease;
+}
+@media (hover: hover) { .mfeat:hover { transform: translateY(-2px); } }
+.mfeat--clay { background: var(--clay); }
+.mfeat--sage { background: var(--sage); }
+.mfeat--blush { background: var(--blush); }
+.mfeat--sand { background: var(--sand); }
+.mfeat--ink { background: var(--ink); color: var(--paper); }
+.mfeat--photo { color: var(--paper); }
+.mfeat--photo .mfeat__bg { position: absolute; inset: 0; z-index: 0; }
+.mfeat--photo .mfeat__bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.05); }
+.mfeat--photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(26,24,21,0.7) 100%); z-index: 1; }
+.mfeat__inner { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 12px; }
+.mfeat__num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7; }
+.mfeat__title { font-family: var(--font-display); font-size: 32px; line-height: 1.05; font-weight: 500; margin: 0; }
+.mfeat__title em { font-style: italic; }
+.mfeat__body { font-size: 14px; line-height: 1.55; opacity: 0.85; margin: 0; }
+.mfeat--span2 { grid-column: span 2; }
+.mfeat--row2 { grid-row: span 2; }
+@media (max-width: 820px) {
+  .mosaic { grid-template-columns: 1fr; grid-auto-rows: 280px; gap: 12px; }
+  .mfeat { padding: 24px; }
+  .mfeat--span2, .mfeat--row2 { grid-column: auto; grid-row: auto; }
+  .mfeat--row2 { grid-row: span 2; }
+}
+
+/* ===== Programmes ===== */
+.pkgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pkg {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+  padding: 36px 32px; display: flex; flex-direction: column;
+  transition: transform .3s ease, border-color .3s ease;
+  position: relative;
+}
+.pkg--feat { border-color: var(--terracotta); transform: translateY(-12px); }
+.pkg__badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--clay); color: var(--ink); padding: 6px 14px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 500;
+}
+.pkg__num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+.pkg__name { font-family: var(--font-display); font-size: 28px; font-weight: 500; margin: 0 0 6px; }
+.pkg__price { font-family: var(--font-display); font-style: italic; font-size: 56px; line-height: 1; margin: 12px 0 4px; }
+.pkg__per { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.pkg__desc { font-size: 14px; color: var(--ink-2); margin: 16px 0 24px; }
+.pkg__list { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pkg__list li { font-size: 14px; line-height: 1.5; color: var(--ink-2); padding-left: 16px; position: relative; }
+.pkg__list li::before { content: "—"; position: absolute; left: 0; color: var(--terracotta); }
+@media (max-width: 820px) {
+  .pkgs { grid-template-columns: 1fr; gap: 14px; }
+  .pkg--feat { transform: none; }
+  .pkg { padding: 28px 24px; }
+  .pkg__price { font-size: 48px; }
+}
+.pkgs__note { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); text-align: center; margin-top: 36px; }
+
+/* ===== Quiz ===== */
+.quiz { max-width: 760px; margin: 0 auto; }
+.quiz__progress { height: 1px; background: var(--line); margin-bottom: 48px; overflow: hidden; }
+.quiz__progress > span { display: block; height: 100%; background: var(--terracotta); transition: width .5s ease; width: 25%; }
+.qstep { display: none; animation: fadeUp .5s ease; }
+.qstep--active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.qstep__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+.qstep__title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); font-weight: 500; line-height: 1.05; margin: 0 0 36px; letter-spacing: -0.01em; }
+.qcards { display: grid; gap: 12px; }
+.qcards--2 { grid-template-columns: 1fr 1fr; }
+.qcard {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+  padding: 24px; cursor: pointer; transition: border-color .2s, background .2s, transform .15s;
+  text-align: left; display: block; min-height: 88px;
+}
+@media (hover: hover) { .qcard:hover { border-color: var(--terracotta); } }
+.qcard:active { transform: scale(0.99); }
+.qcard.selected { border-color: var(--terracotta); background: rgba(184,103,76,0.06); }
+.qcard__letter { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 8px; }
+.qcard__title { font-family: var(--font-display); font-size: 22px; font-weight: 500; margin: 0 0 4px; line-height: 1.2; }
+.qcard__sub { font-size: 13px; color: var(--ink-3); margin: 0; }
+.quiz__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; }
+.quiz__nav button { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); padding: 12px 0; min-height: 44px; transition: color .2s; }
+.quiz__nav button:disabled { opacity: 0.3; pointer-events: none; }
+@media (hover: hover) { .quiz__nav button:hover { color: var(--terracotta); } }
+.qresult { background: var(--clay); border-radius: 20px; padding: 48px 40px; }
+.qresult__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); margin-bottom: 16px; }
+.qresult__title { font-family: var(--font-display); font-size: clamp(36px, 5.5vw, 56px); font-weight: 500; line-height: 1; margin: 0 0 16px; }
+.qresult__title em { font-style: italic; color: var(--terracotta); }
+.qresult__desc { font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 520px; margin: 0 0 32px; }
+.qresult__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .qcards--2 { grid-template-columns: 1fr; }
+  .qresult { padding: 32px 24px; }
+  .qresult__cta .btn { flex: 1 1 100%; }
+}
+
+/* ===== Results ===== */
+.rgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.rgrid > div { aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; }
+.rgrid > div img { width: 100%; height: 100%; object-fit: cover; }
+.rgrid > div:nth-child(even) { margin-top: 32px; }
+@media (max-width: 820px) {
+  .rgrid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rgrid > div:nth-child(even) { margin-top: 20px; }
+}
+.tquotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+.tquote { border-left: 1px solid var(--terracotta); padding-left: 20px; }
+.tquote p { font-family: var(--font-display); font-style: italic; font-size: 20px; line-height: 1.4; margin: 0 0 12px; color: var(--ink); }
+.tquote span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+@media (max-width: 820px) { .tquotes { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; } }
+
+/* ===== Closing CTA ===== */
+.close-cta {
+  position: relative; min-height: 80vh; min-height: 80svh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden; color: var(--paper);
+}
+.close-cta__bg { position: absolute; inset: 0; z-index: 0; }
+.close-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .close-cta__bg img { animation: ken 18s ease-out infinite alternate; }
+}
+.close-cta::after { content: ""; position: absolute; inset: 0; background: rgba(26,24,21,0.78); z-index: 1; }
+.close-cta__inner { position: relative; z-index: 2; padding: 80px 24px; max-width: 1100px; }
+.close-cta__h2 {
+  font-family: var(--font-display); font-size: clamp(44px, 10vw, 112px);
+  font-weight: 400; line-height: 0.98; letter-spacing: -0.02em; margin: 0 0 36px;
+}
+.close-cta__h2 em { font-style: italic; color: var(--clay); }
+.close-cta__sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,247,242,0.6); margin-top: 24px; }
+
+/* ===== Footer ===== */
+.footer { padding: 48px 0; border-top: 1px solid var(--line); padding-bottom: calc(48px + var(--safe-bottom)); }
+.footer__inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+.footer__links { display: flex; gap: 28px; }
+.footer__links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); padding: 8px 0; min-height: 44px; display: inline-flex; align-items: center; transition: color .2s; }
+@media (hover: hover) { .footer__links a:hover { color: var(--terracotta); } }
+.footer__copy { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+@media (max-width: 640px) {
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+  .footer__links { flex-wrap: wrap; gap: 18px; }
+  .footer { padding-bottom: calc(96px + var(--safe-bottom)); }
+}
+
+/* ===== Mobile sticky CTA ===== */
+.mcta {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  background: var(--terracotta); color: var(--paper);
+  padding: 16px 24px calc(16px + var(--safe-bottom));
+  text-align: center;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+  transition: transform .35s ease;
+  border-top: 1px solid rgba(250,247,242,0.15);
+}
+.mcta--hidden { transform: translateY(120%); }
+@media (max-width: 768px) { .mcta { display: block; } }
+
+/* ===== Reveal ===== */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero__bg img, .close-cta__bg img { animation: none; }
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  background: var(--paper-2);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  overflow: hidden; padding: 18px 0;
+}
+.marquee__inner {
+  display: flex; gap: 56px; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3);
+  will-change: transform; transform: translateZ(0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__inner { animation: scroll 40s linear infinite; }
+}
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 768px) {
+  .marquee__inner { gap: 36px; animation-duration: 25s; }
+}
+
+/* ===== FAQ ===== */
+.faq { max-width: 820px; margin: 0 auto; }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  text-align: left; padding: 28px 0; min-height: 64px;
+  font-family: var(--font-display); font-size: clamp(20px, 3vw, 28px); font-weight: 500; line-height: 1.25; color: var(--ink);
+}
+.faq__icon { flex: none; width: 20px; height: 20px; position: relative; transition: transform .3s ease; }
+.faq__icon::before, .faq__icon::after { content: ""; position: absolute; background: var(--terracotta); border-radius: 2px; }
+.faq__icon::before { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
+.faq__icon::after { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); transition: opacity .3s ease; }
+.faq__item.open .faq__icon::after { opacity: 0; }
+.faq__a { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+.faq__a p { margin: 0 0 28px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 660px; }
+@media (hover: hover) { .faq__q:hover { color: var(--terracotta); } }
+</style>
 </head>
 
-<body class="bg-bg text-primary font-body antialiased">
+<body>
 
-<!-- ===== NAV ===== -->
-<nav class="bg-bg border-b border-primary/10 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="#" class="flex flex-col leading-none">
-      <span class="font-headline text-lg sm:text-2xl font-black uppercase tracking-tighter">Train With Irine</span>
-      <span class="text-xs italic text-primary/60 font-headline">Get fit online</span>
+<!-- NAV -->
+<nav id="nav" class="nav nav--dark">
+  <div class="nav__inner">
+    <a href="#top" class="brand">
+      <svg class="brand__mark" viewBox="0 0 140 100" fill="none" aria-hidden="true">
+        <path d="M 30 50 Q 30 20 60 20 Q 90 20 90 50 Q 90 80 60 80 Q 30 80 30 50 Z" stroke="currentColor" stroke-width="6"/>
+        <path d="M 50 50 Q 50 20 80 20 Q 110 20 110 50 Q 110 80 80 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Train With Irine</span>
+        <span class="brand__tag">get fit online</span>
+      </span>
     </a>
-
-    <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#about" class="text-sm hover:text-secondary transition-colors">About</a>
-      <a href="#questionnaire" class="text-sm hover:text-secondary transition-colors">Programs</a>
-      <a href="#results" class="text-sm hover:text-secondary transition-colors">Results</a>
-      <a href="#questionnaire" class="bg-primary text-bg px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">
-        START NOW
-      </a>
+    <div id="nav-links" class="nav__links">
+      <a href="#about">About</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#quiz">Find My Match</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Start Now</a>
     </div>
-
-    <!-- Mobile hamburger -->
-    <button id="hamburger" class="md:hidden" aria-label="Open menu">
-      <span class="material-symbols-outlined text-3xl">menu</span>
+    <button id="hamburger" class="hamburger" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu">
-    <div class="px-4 pb-4 flex flex-col gap-4 border-t border-primary/10 pt-4">
-      <a href="#about" class="text-sm font-semibold" onclick="closeMobileMenu()">About</a>
-      <a href="#questionnaire" class="text-sm font-semibold" onclick="closeMobileMenu()">Programs</a>
-      <a href="#results" class="text-sm font-semibold" onclick="closeMobileMenu()">Results</a>
-      <a href="#questionnaire" onclick="closeMobileMenu()" class="bg-primary text-bg text-center py-3 text-xs font-bold uppercase tracking-wider">START NOW</a>
-    </div>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-bg">
-  <!-- Background image (right side) -->
-  <div class="absolute inset-0 z-0 pointer-events-none">
-    <div class="absolute right-0 top-0 bottom-0 w-full md:w-1/2 h-full bg-cover bg-center opacity-60 mix-blend-multiply grayscale contrast-125"
-      style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsw3HH09-eL_I0mR0AVXPfJpDOVS4UCw_UzpWKufNPupRLsQfKWFnNxX-zUqK5BCSX94WW06J0nwrnNtCGyIXNsH5slRyku7yBO7pfb6lVFqOwCZp-LkwGu6H2tbhxEpXGMk748rYdMu_vyjUTSqcMAJpqQzzCi1tMIgc9nmpHh-bwQiS2oSuOGbWJPSoSQhnQ4HVSVxH3dav39PqqUWzIc3fRzYBbYlvjMbGx2EILa5czy7cP70Hp1Uc9tVAnA24DX7hTtuAjacg');">
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-bg via-bg/85 to-transparent md:via-bg/60"></div>
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero__bg">
+    <img src="assets/images/ERIC4432_Original.webp"
+         alt="Irine, founder and coach of Train With Irine"
+         fetchpriority="high"/>
   </div>
+  <div class="hero__inner wrap">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span class="eyebrow">1:1 Coaching · Kerala / Global</span>
+    </div>
+    <h1 class="hero__h1">
+      Fitness, simplified for <em>real life</em>.
+    </h1>
+    <p class="hero__lede">Your body. Your discipline. Your transformation. Coaching one client at a time — no templates, no shortcuts, real change on your schedule.</p>
+    <div class="hero__cta">
+      <a href="#quiz" class="btn btn--paper">Find My Programme →</a>
+      <a href="#programmes" class="btn btn--outline-light">See Programmes</a>
+    </div>
+    <div class="hero__sub">12+ countries · Miss Kerala 2024 · 9,285 on Instagram</div>
+  </div>
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <span class="hero__scroll-line"></span>
+  </div>
+</header>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-32 w-full">
-    <div class="max-w-2xl">
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Miss Kerala 2024 Competitor · Powerlifting Coach</p>
-      <h1 class="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tighter uppercase mb-6">
-        Your Body.<br/>
-        Your Discipline.<br/>
-        <span class="text-secondary">Your Transformation.</span>
-      </h1>
-      <p class="text-base sm:text-xl font-body font-light mb-8 text-primary/75 max-w-xl">
-        Online &amp; in-person coaching by Irine Rose — Kerala-based transformation specialist. Real coaching, real results.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="#questionnaire" class="bg-primary text-bg px-7 py-4 font-bold uppercase tracking-wider text-xs text-center hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-          FIND MY PROGRAM <span class="material-symbols-outlined text-base">arrow_forward</span>
-        </a>
-        <a href="#programs" class="border-2 border-primary text-primary px-7 py-4 font-bold uppercase tracking-wider text-xs text-center hover:bg-primary hover:text-bg transition-colors">
-          SEE ALL PROGRAMS
-        </a>
+<!-- STATS -->
+<section class="stats">
+  <div class="stats__inner">
+    <div class="stats__item"><div class="stats__num">12+</div><div class="stats__label">Countries</div></div>
+    <div class="stats__item"><div class="stats__num">12</div><div class="stats__label">Week minimum</div></div>
+    <div class="stats__item"><div class="stats__num">120+</div><div class="stats__label">Clients coached</div></div>
+    <div class="stats__item"><div class="stats__num">9.2K</div><div class="stats__label">On Instagram</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__inner">
+    <span>India</span><span>—</span><span>UAE</span><span>—</span><span>UK</span><span>—</span><span>USA</span><span>—</span><span>Canada</span><span>—</span><span>Australia</span><span>—</span><span>Singapore</span><span>—</span><span>Germany</span><span>—</span><span>Qatar</span><span>—</span><span>KSA</span><span>—</span><span>Oman</span><span>—</span><span>Malaysia</span>
+    <span>India</span><span>—</span><span>UAE</span><span>—</span><span>UK</span><span>—</span><span>USA</span><span>—</span><span>Canada</span><span>—</span><span>Australia</span><span>—</span><span>Singapore</span><span>—</span><span>Germany</span><span>—</span><span>Qatar</span><span>—</span><span>KSA</span><span>—</span><span>Oman</span><span>—</span><span>Malaysia</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section-head__title">Influencer? <em>No.</em> Coach.</h2>
+      <p class="section-head__sub">I'm Irine. My journey started at 18, chasing a flatter stomach — then college, kickboxing and powerlifting turned the gym into my happy place. Fitness stopped being a punishment and became a lifestyle. That shift is exactly what I coach.</p>
+    </div>
+    <div class="mosaic reveal">
+      <div class="mfeat mfeat--photo mfeat--row2">
+        <div class="mfeat__bg"><img src="assets/images/IMG_2157.webp" loading="lazy" decoding="async" alt="Irine on stage with her competition trophy and medal"/></div>
+        <div class="mfeat__inner">
+          <span class="mfeat__num">01 — On platform</span>
+          <h3 class="mfeat__title">Years <em>in the trenches</em>.</h3>
+          <p class="mfeat__body">Kickboxing, powerlifting, competition prep. Real training in real gyms — not theory.</p>
+        </div>
+      </div>
+      <div class="mfeat mfeat--clay mfeat--span2">
+        <div class="mfeat__inner">
+          <span class="mfeat__num">02 — Philosophy</span>
+          <h3 class="mfeat__title">Twelve weeks <em>minimum</em>. Real change doesn't fit in four.</h3>
+          <p class="mfeat__body">If you want a templated PDF, this isn't it. Real transformation is about how you feel living in your body every day — sustainable, not restrictive.</p>
+        </div>
+      </div>
+      <div class="mfeat mfeat--sage">
+        <div class="mfeat__inner">
+          <span class="mfeat__num">03 — Credentials</span>
+          <h3 class="mfeat__title">Miss Kerala 2024 competitor.</h3>
+          <p class="mfeat__body">Powerlifting coach. Stage prep specialist.</p>
+        </div>
+      </div>
+      <div class="mfeat mfeat--sand">
+        <div class="mfeat__inner">
+          <span class="mfeat__num">04 — How I work</span>
+          <h3 class="mfeat__title">One client at a time.</h3>
+          <p class="mfeat__body">Limited slots each month. Quality over volume.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SOCIAL PROOF BAR ===== -->
-<div class="border-y border-primary/10 bg-white/60 backdrop-blur-sm">
-  <div class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-4 gap-6 divide-x divide-primary/10">
-    <div class="text-center px-2">
-      <span class="block font-headline text-2xl font-bold text-secondary">9,000+</span>
-      <span class="text-xs uppercase tracking-wider text-primary/60">Followers</span>
+<!-- PROGRAMMES -->
+<section id="programmes" class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Programmes</span>
+      <h2 class="section-head__title">Three ways to <em>work with me</em>.</h2>
     </div>
-    <div class="text-center px-2">
-      <span class="block font-headline text-2xl font-bold text-secondary">3</span>
-      <span class="text-xs uppercase tracking-wider text-primary/60">Programs</span>
+    <div class="pkgs reveal">
+      <div class="pkg">
+        <div class="pkg__num">01 · Kickstart</div>
+        <h3 class="pkg__name">For independent trainers</h3>
+        <div class="pkg__price">₹4,000<span class="pkg__per">4-week program</span></div>
+        <p class="pkg__desc">Beginner to advanced — you train on your own.</p>
+        <ul class="pkg__list">
+          <li>Customised workout plan & diet</li>
+          <li>Form & technique notes</li>
+          <li>Reference videos</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--secondary">Choose Kickstart</a>
+      </div>
+      <div class="pkg pkg--feat">
+        <div class="pkg__badge">Most picked</div>
+        <div class="pkg__num">02 · Transformation</div>
+        <h3 class="pkg__name">Coaching with accountability</h3>
+        <div class="pkg__price">₹15,000<span class="pkg__per">3-month program</span></div>
+        <p class="pkg__desc">Full-stack 1:1 attention.</p>
+        <ul class="pkg__list">
+          <li>Customised diet & workout plan</li>
+          <li>Progress tracking</li>
+          <li>Weekly check-in call & WhatsApp assistance</li>
+          <li>6-week progressive plan</li>
+          <li>Form, technique notes & reference videos</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--terracotta">Choose Transformation</a>
+      </div>
+      <div class="pkg">
+        <div class="pkg__num">03 · Consistency</div>
+        <h3 class="pkg__name">For those who've started & stopped</h3>
+        <div class="pkg__price">₹25,000<span class="pkg__per">3-month program</span></div>
+        <p class="pkg__desc">Deep nutrition coaching, fully supported.</p>
+        <ul class="pkg__list">
+          <li>3 live sessions every 4 weeks for form & technique</li>
+          <li>Deep nutrition coaching — meal timing, grocery list, recipe videos</li>
+          <li>Daily message support</li>
+          <li>Weekly check-in calls from nutritionist & trainer</li>
+          <li>Diet monitoring & progress tracking</li>
+          <li>Plans altered as needed</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--secondary">Choose Consistency</a>
+      </div>
     </div>
-    <div class="text-center px-2">
-      <span class="block font-headline text-2xl font-bold text-secondary">Kerala</span>
-      <span class="text-xs uppercase tracking-wider text-primary/60">& Online</span>
-    </div>
-    <div class="text-center px-2">
-      <span class="block font-headline text-2xl font-bold text-secondary">100%</span>
-      <span class="text-xs uppercase tracking-wider text-primary/60">Customised</span>
-    </div>
+    <p class="pkgs__note">Limited slots each month · DM 'CHANGE' on Instagram to start</p>
   </div>
-</div>
+</section>
 
-<!-- ===== ABOUT ===== -->
-<section id="about" class="py-20 bg-bg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">About Irine</p>
-        <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Built Under Pressure. Shaped By Discipline.</h2>
-        <p class="text-primary/70 leading-relaxed mb-4">
-          Irine Rose is a certified transformation coach and competitive powerlifter from Kerala, India. Having competed in Miss Kerala 2024 and trained at @zerofitnessstudio, she combines the rigour of competitive sport with the precision of personalised coaching.
-        </p>
-        <p class="text-primary/70 leading-relaxed mb-8">
-          Her approach is direct and results-driven — no fluff, no trends. Just science-backed programming, deep nutrition coaching, and the accountability that actually works.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-secondary">verified</span>
-            <span class="text-sm font-semibold">Miss Kerala 2024 Competitor</span>
+<!-- QUIZ -->
+<section id="quiz" class="section section--paper3">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto; margin-right:auto; text-align:center; max-width:560px;">
+      <span class="eyebrow">The Match · 60 seconds</span>
+      <h2 class="section-head__title">Find your <em>programme</em>.</h2>
+      <p class="section-head__sub" style="margin-left:auto;margin-right:auto;">Three questions. One package built for you.</p>
+    </div>
+
+    <div class="quiz reveal">
+      <div class="quiz__progress"><span id="qbar"></span></div>
+
+      <div id="qstep-1" class="qstep qstep--active">
+        <div class="qstep__label">Step 01 / 03</div>
+        <h3 class="qstep__title">What's the goal?</h3>
+        <div class="qcards qcards--2">
+          <button class="qcard" data-key="goal" data-val="fatloss"><div class="qcard__letter">A</div><h4 class="qcard__title">Fat loss</h4><p class="qcard__sub">Lose weight, keep muscle, feel lighter.</p></button>
+          <button class="qcard" data-key="goal" data-val="strength"><div class="qcard__letter">B</div><h4 class="qcard__title">Build strength</h4><p class="qcard__sub">Lift heavier. Build muscle. Get powerful.</p></button>
+          <button class="qcard" data-key="goal" data-val="recomp"><div class="qcard__letter">C</div><h4 class="qcard__title">Recomposition</h4><p class="qcard__sub">Lose fat and gain muscle at once.</p></button>
+          <button class="qcard" data-key="goal" data-val="prep"><div class="qcard__letter">D</div><h4 class="qcard__title">Stage / event prep</h4><p class="qcard__sub">Pageant, shoot, wedding, competition.</p></button>
+        </div>
+      </div>
+
+      <div id="qstep-2" class="qstep">
+        <div class="qstep__label">Step 02 / 03</div>
+        <h3 class="qstep__title">Where are you starting?</h3>
+        <div class="qcards">
+          <button class="qcard" data-key="exp" data-val="beginner"><h4 class="qcard__title">Beginner — gym feels new.</h4></button>
+          <button class="qcard" data-key="exp" data-val="intermediate"><h4 class="qcard__title">Intermediate — I train, but I'm stuck.</h4></button>
+          <button class="qcard" data-key="exp" data-val="advanced"><h4 class="qcard__title">Advanced — I know my numbers.</h4></button>
+        </div>
+      </div>
+
+      <div id="qstep-3" class="qstep">
+        <div class="qstep__label">Step 03 / 03</div>
+        <h3 class="qstep__title">How much support do you want?</h3>
+        <div class="qcards">
+          <button class="qcard" data-key="support" data-val="independent"><h4 class="qcard__title">Just the plan — I'll run with it.</h4><p class="qcard__sub">Customized workout & diet; you stay accountable.</p></button>
+          <button class="qcard" data-key="support" data-val="guided"><h4 class="qcard__title">Plan plus check-ins & WhatsApp.</h4><p class="qcard__sub">Weekly calls, progression and support built in.</p></button>
+          <button class="qcard" data-key="support" data-val="full"><h4 class="qcard__title">Full support — I've started & stopped before.</h4><p class="qcard__sub">Deep nutrition coaching with a dietitian + trainer.</p></button>
+        </div>
+      </div>
+
+      <div id="qstep-4" class="qstep">
+        <div class="qresult">
+          <div class="qresult__label">Match found</div>
+          <h3 class="qresult__title">Your programme: <em id="qres-name">—</em></h3>
+          <p class="qresult__desc" id="qres-desc"></p>
+          <div class="qresult__cta">
+            <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--primary">DM 'CHANGE' on Instagram →</a>
+            <button id="qreset" class="btn btn--secondary">Retake Quiz</button>
           </div>
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-secondary">fitness_center</span>
-            <span class="text-sm font-semibold">Powerlifting Background</span>
-          </div>
         </div>
       </div>
-      <div class="bg-primary/5 rounded-2xl p-8 border border-primary/10">
-        <blockquote class="font-headline text-2xl italic font-medium mb-4">
-          "Influencer? No. Coach."
-        </blockquote>
-        <p class="text-sm text-primary/60 leading-relaxed">
-          Irine's content focuses on real transformations, form and technique, and honest nutrition guidance. She works with a small number of clients to ensure every programme gets her full attention.
-        </p>
-        <div class="mt-6 flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-secondary" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.31.975.975 1.248 2.242 1.31 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.31 3.608-.975.975-2.242 1.248-3.608 1.31-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.31-.975-.975-1.248-2.242-1.31-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.31-3.608.975-.975 2.242-1.248 3.608-1.31 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.613.074-3.067.44-4.205 1.578C1.71 2.788 1.344 4.242 1.27 5.855 1.212 7.135 1.198 7.543 1.198 12c0 4.457.014 4.865.072 6.145.074 1.613.44 3.067 1.578 4.205 1.138 1.138 2.592 1.504 4.205 1.578 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.613-.074 3.067-.44 4.205-1.578 1.138-1.138 1.504-2.592 1.578-4.205.058-1.28.072-1.688.072-6.145 0-4.457-.014-4.865-.072-6.145-.074-1.613-.44-3.067-1.578-4.205C19.214 1.61 17.76 1.244 16.147 1.17 14.867 1.112 14.459 1.098 12 1.098zm0 5.838a5.064 5.064 0 1 0 0 10.128 5.064 5.064 0 0 0 0-10.128zm0 8.352a3.288 3.288 0 1 1 0-6.576 3.288 3.288 0 0 1 0 6.576zm5.338-9.87a1.185 1.185 0 1 0 0 2.37 1.185 1.185 0 0 0 0-2.37z"/></svg>
-          <a href="https://www.instagram.com/trainwithirine" target="_blank" class="text-secondary font-bold text-sm hover:underline">@trainwithirine</a>
-          <span class="text-primary/40 text-xs">· 9,285 followers</span>
-        </div>
+
+      <div class="quiz__nav" id="qnav">
+        <button id="qback" disabled>← Back</button>
+        <button id="qnext" disabled>Next →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== QUIZ ===== -->
-<section id="questionnaire" class="py-20 bg-white">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-12">
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Quick Match</p>
-      <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Find Your Perfect Program</h2>
-      <p class="text-primary/60 text-base">Answer 3 quick questions and we'll match you to the right coaching package.</p>
+<!-- RESULTS -->
+<section id="results" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Results</span>
+      <h2 class="section-head__title">Real people. <em>Real changes.</em></h2>
     </div>
-
-    <!-- Progress -->
-    <div class="mb-8">
-      <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-primary/40 mb-2">
-        <span id="step-label">Step 1 of 3</span>
-        <span id="step-pct">33%</span>
-      </div>
-      <div class="h-1 bg-primary/10 rounded-full">
-        <div id="progress-bar" class="progress-bar h-1 bg-secondary rounded-full" style="width: 33%"></div>
-      </div>
+    <div class="rgrid reveal">
+      <div><img src="assets/images/ERIC4375_Original.webp" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
+      <div><img src="assets/images/ERIC4387_Original.webp" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
+      <div><img src="assets/images/ERIC4392_Original.webp" loading="lazy" decoding="async" alt="Irine in the gym"/></div>
     </div>
-
-    <!-- Quiz container -->
-    <div id="quiz-container" class="bg-bg rounded-2xl p-6 sm:p-10 border border-primary/5 shadow-sm">
-
-      <!-- Step 1: Goal -->
-      <div class="quiz-step active fade-in" id="step-1">
-        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">What is your primary fitness goal?</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="goal" value="lose-weight" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">monitor_weight</span>
-              <div class="font-bold text-base mb-1">Lose weight &amp; tone up</div>
-              <div class="text-xs text-primary/55">Shed fat and build a lean physique.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="goal" value="build-strength" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">fitness_center</span>
-              <div class="font-bold text-base mb-1">Build strength &amp; muscle</div>
-              <div class="text-xs text-primary/55">Increase power and muscle mass.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="goal" value="competition" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">emoji_events</span>
-              <div class="font-bold text-base mb-1">Competition prep</div>
-              <div class="text-xs text-primary/55">Training for bodybuilding or posing stage.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="goal" value="fitness" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">directions_run</span>
-              <div class="font-bold text-base mb-1">Improve overall fitness</div>
-              <div class="text-xs text-primary/55">Build consistency and general health.</div>
-            </div>
-          </label>
-        </div>
-        <button onclick="goToStep(2)" class="w-full bg-primary text-bg py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-          NEXT <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </button>
-      </div>
-
-      <!-- Step 2: Experience -->
-      <div class="quiz-step" id="step-2">
-        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">What is your current fitness experience?</h3>
-        <div class="flex flex-col gap-3 mb-8">
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="experience" value="beginner" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">emoji_people</span>
-              <div class="font-bold text-base mb-1">Beginner</div>
-              <div class="text-xs text-primary/55">New to structured training or just getting started.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="experience" value="intermediate" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">trending_up</span>
-              <div class="font-bold text-base mb-1">Intermediate</div>
-              <div class="text-xs text-primary/55">Training consistently for 6+ months, ready to level up.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="experience" value="advanced" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">military_tech</span>
-              <div class="font-bold text-base mb-1">Advanced / Competitive</div>
-              <div class="text-xs text-primary/55">Experienced athlete or preparing for competition.</div>
-            </div>
-          </label>
-        </div>
-        <div class="flex gap-3">
-          <button onclick="goToStep(1)" class="flex-1 border-2 border-primary text-primary py-4 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
-            BACK
-          </button>
-          <button onclick="goToStep(3)" class="flex-1 bg-primary text-bg py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-            NEXT <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Step 3: Commitment -->
-      <div class="quiz-step" id="step-3">
-        <h3 class="font-headline text-xl sm:text-2xl font-bold mb-6">How much support are you looking for?</h3>
-        <div class="flex flex-col gap-3 mb-8">
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="commitment" value="kickstart" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">bolt</span>
-              <div class="font-bold text-base mb-1">Quick start — just the plan</div>
-              <div class="text-xs text-primary/55">I want a solid programme to follow on my own.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="commitment" value="transformation" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">groups</span>
-              <div class="font-bold text-base mb-1">Guided transformation</div>
-              <div class="text-xs text-primary/55">I want regular check-ins, WhatsApp support &amp; accountability.</div>
-            </div>
-          </label>
-          <label class="goal-card cursor-pointer">
-            <input type="radio" name="commitment" value="consistency" class="sr-only"/>
-            <div class="card-inner border-2 border-primary/10 rounded-xl p-5 transition-all">
-              <span class="material-symbols-outlined card-icon text-3xl mb-3 text-primary/40 block transition-colors">diamond</span>
-              <div class="font-bold text-base mb-1">Full premium coaching</div>
-              <div class="text-xs text-primary/55">Live sessions, daily support, deep nutrition coaching &amp; everything.</div>
-            </div>
-          </label>
-        </div>
-        <div class="flex gap-3">
-          <button onclick="goToStep(2)" class="flex-1 border-2 border-primary text-primary py-4 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
-            BACK
-          </button>
-          <button onclick="showResult()" class="flex-1 bg-secondary text-white py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-            SEE MY MATCH <span class="material-symbols-outlined text-sm">auto_awesome</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Result -->
-      <div class="quiz-step" id="step-result">
-        <div class="text-center mb-8">
-          <span class="material-symbols-outlined text-5xl text-secondary mb-3 block">auto_awesome</span>
-          <h3 class="font-headline text-2xl sm:text-3xl font-bold mb-2">Your Perfect Match</h3>
-          <p class="text-primary/60 text-sm">Based on your answers, we recommend:</p>
-        </div>
-        <div id="result-card" class="border-2 border-secondary bg-white rounded-2xl p-6 sm:p-8 mb-6 relative">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full">
-            Recommended for You
-          </div>
-          <h4 id="result-title" class="font-headline text-2xl font-bold mt-2 mb-1"></h4>
-          <p id="result-price" class="text-secondary font-bold text-3xl font-headline mb-4"></p>
-          <ul id="result-features" class="space-y-2 mb-6 text-sm"></ul>
-          <a href="https://www.instagram.com/trainwithirine" target="_blank"
-            class="block w-full bg-primary text-bg text-center py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity">
-            DM 'CHANGE' TO BEGIN
-          </a>
-        </div>
-        <button onclick="goToStep(1)" class="w-full border-2 border-primary text-primary py-3 font-bold uppercase tracking-wider text-xs hover:bg-primary hover:text-bg transition-colors">
-          Retake Quiz
-        </button>
-      </div>
-
+    <div class="tquotes reveal">
+      <blockquote class="tquote"><p>"The scale stayed the same for months, but after my vacation everyone noticed the difference — 'hey, you got some muscles!' I felt so happy about it."</p><span>Sooraj · Dubai</span></blockquote>
+      <blockquote class="tquote"><p>"I've worked out for years, but it was my first time under a coach with a real plan. I've never seen my body this conditioned. Thank you for pushing me."</p><span>Vinayak · Trivandrum</span></blockquote>
+      <blockquote class="tquote"><p>"I was always the gym girl afraid to lift heavy. Four weeks in, I no longer stop myself from trying anything new. I'm finally comfortable in the gym."</p><span>Dia · UK</span></blockquote>
     </div>
   </div>
 </section>
 
-<!-- ===== PROGRAMS ===== -->
-<section id="programs" class="py-20 bg-bg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14">
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Coaching Packages</p>
-      <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Choose Your Program</h2>
-      <p class="text-primary/60 text-base max-w-xl mx-auto">Select the commitment level that matches your goals and lifestyle. All plans are 100% customised — no templates.</p>
+<!-- FAQ -->
+<section id="faq" class="section section--paper2">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2 class="section-head__title">Good to <em>know</em>.</h2>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-
-      <!-- 4 Week Kickstart -->
-      <div class="bg-white rounded-2xl border border-primary/8 p-7 flex flex-col hover:shadow-xl transition-shadow duration-300">
-        <div class="mb-6">
-          <h3 class="font-headline text-2xl font-bold mb-1">4 Week Kickstart</h3>
-          <p class="text-primary/55 text-sm">Perfect to establish foundations &amp; see early results.</p>
-        </div>
-        <div class="mb-7">
-          <span class="font-headline text-4xl font-bold">₹4,000</span>
-          <span class="text-primary/45 text-sm"> / 4 weeks</span>
-        </div>
-        <ul class="space-y-3 mb-8 flex-grow">
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Customised workout plan &amp; diet</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Form &amp; technique notes</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Reference videos included</span></li>
-        </ul>
-        <a href="https://www.instagram.com/trainwithirine" target="_blank"
-          class="block w-full border-2 border-primary text-primary text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-bg transition-colors">
-          GET STARTED
-        </a>
+    <div class="faq reveal">
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Do you provide live sessions?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Yes. Live sessions depend on client and trainer availability — we'll find a slot that works for both of us.</p></div>
       </div>
-
-      <!-- 3 Month Transformation (Most Popular) -->
-      <div class="bg-white rounded-2xl border-2 border-secondary p-7 flex flex-col relative shadow-2xl md:scale-105 z-10">
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white px-5 py-1.5 text-xs font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
-          Most Popular
-        </div>
-        <div class="mb-6 mt-2">
-          <h3 class="font-headline text-2xl font-bold mb-1">3 Month Transformation</h3>
-          <p class="text-primary/55 text-sm">Complete lifestyle overhaul for lasting, visible change.</p>
-        </div>
-        <div class="mb-7">
-          <span class="font-headline text-4xl font-bold">₹15,000</span>
-          <span class="text-primary/45 text-sm"> / 3 months</span>
-        </div>
-        <ul class="space-y-3 mb-8 flex-grow">
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Customised diet &amp; workout plan</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Progress tracking</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Weekly check-in call &amp; WhatsApp assistance</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>6-week progressive plan</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Form, technique notes &amp; reference videos</span></li>
-        </ul>
-        <a href="https://www.instagram.com/trainwithirine" target="_blank"
-          class="block w-full bg-primary text-bg text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:opacity-90 transition-opacity">
-          START TRANSFORMATION
-        </a>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Who do you train?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Beginners to advanced, all genders, bodybuilders, and clients up to the age of 60.</p></div>
       </div>
-
-      <!-- 3 Month Consistency -->
-      <div class="bg-white rounded-2xl border border-primary/8 p-7 flex flex-col hover:shadow-xl transition-shadow duration-300">
-        <div class="mb-6">
-          <h3 class="font-headline text-2xl font-bold mb-1">3 Month Consistency</h3>
-          <p class="text-primary/55 text-sm">Premium all-in coaching for serious athletes &amp; competitors.</p>
-        </div>
-        <div class="mb-7">
-          <span class="font-headline text-4xl font-bold">₹25,000</span>
-          <span class="text-primary/45 text-sm"> / 3 months</span>
-        </div>
-        <ul class="space-y-3 mb-8 flex-grow">
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>3 live sessions every 4 weeks (form &amp; technique)</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Deep nutrition coaching — meal timing, grocery list, weekly calls, recipe videos</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Daily message support &amp; weekly check-in calls from Nutritionist &amp; Trainer</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Diet monitoring &amp; progress tracking</span></li>
-          <li class="flex items-start gap-3 text-sm"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>Plans altered accordingly</span></li>
-        </ul>
-        <a href="https://www.instagram.com/trainwithirine" target="_blank"
-          class="block w-full border-2 border-primary text-primary text-center py-3.5 font-bold uppercase tracking-widest text-xs hover:bg-primary hover:text-bg transition-colors">
-          GET STARTED
-        </a>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Do I need gym equipment?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Not at all. You can train at home with bands and dumbbells. And if you can get to a gym — even better.</p></div>
       </div>
-
-    </div>
-
-    <p class="text-center text-sm text-primary/50 italic mt-10">
-      Not sure which to pick? <a href="#questionnaire" class="text-secondary font-bold underline">Take the 3-question quiz ↑</a>
-    </p>
-  </div>
-</section>
-
-<!-- ===== RESULTS CALLOUT ===== -->
-<section id="results" class="py-20 bg-primary text-bg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-    <p class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-3">Real Results</p>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Transformation Starts With a DM</h2>
-    <p class="text-bg/65 text-base max-w-xl mx-auto mb-10">
-      Irine's client transformations are documented on Instagram — real people, real change. Every journey starts with a single message.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://www.instagram.com/trainwithirine" target="_blank"
-        class="bg-secondary text-white px-8 py-4 font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.31.975.975 1.248 2.242 1.31 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.31 3.608-.975.975-2.242 1.248-3.608 1.31-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.31-.975-.975-1.248-2.242-1.31-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.31-3.608.975-.975 2.242-1.248 3.608-1.31 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.613.074-3.067.44-4.205 1.578C1.71 2.788 1.344 4.242 1.27 5.855 1.212 7.135 1.198 7.543 1.198 12c0 4.457.014 4.865.072 6.145.074 1.613.44 3.067 1.578 4.205 1.138 1.138 2.592 1.504 4.205 1.578 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.613-.074 3.067-.44 4.205-1.578 1.138-1.138 1.504-2.592 1.578-4.205.058-1.28.072-1.688.072-6.145 0-4.457-.014-4.865-.072-6.145-.074-1.613-.44-3.067-1.578-4.205C19.214 1.61 17.76 1.244 16.147 1.17 14.867 1.112 14.459 1.098 12 1.098zm0 5.838a5.064 5.064 0 1 0 0 10.128 5.064 5.064 0 0 0 0-10.128zm0 8.352a3.288 3.288 0 1 1 0-6.576 3.288 3.288 0 0 1 0 6.576zm5.338-9.87a1.185 1.185 0 1 0 0 2.37 1.185 1.185 0 0 0 0-2.37z"/></svg>
-        VIEW RESULTS @trainwithirine
-      </a>
-      <a href="#questionnaire"
-        class="border-2 border-bg/30 text-bg px-8 py-4 font-bold uppercase tracking-wider text-xs hover:bg-bg hover:text-primary transition-colors">
-        FIND MY PROGRAM
-      </a>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">I'm pre-diabetic and have PCOS — can I join?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Of course. You'll consult with our trainer and dietitian about your condition, and they'll curate your workout plan and diet accordingly.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="bg-primary text-bg border-t border-secondary/20 py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-10">
-      <!-- Brand -->
-      <div>
-        <span class="font-headline text-xl font-black uppercase tracking-tight block mb-2">Train With Irine</span>
-        <span class="text-xs italic text-bg/50 font-headline block mb-4">Get fit online</span>
-        <p class="text-bg/50 text-sm leading-relaxed">Real coaching, real results. Kerala &amp; worldwide.</p>
-      </div>
-      <!-- Links -->
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-sm text-bg/60">
-          <li><a href="#about" class="hover:text-secondary transition-colors">About Irine</a></li>
-          <li><a href="#questionnaire" class="hover:text-secondary transition-colors">Find My Program</a></li>
-          <li><a href="#programs" class="hover:text-secondary transition-colors">All Programs</a></li>
-          <li><a href="https://www.instagram.com/trainwithirine" target="_blank" class="hover:text-secondary transition-colors">Instagram</a></li>
-        </ul>
-      </div>
-      <!-- CTA -->
-      <div>
-        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Start Today</h4>
-        <div class="bg-secondary/10 border border-secondary/30 rounded-xl p-5">
-          <p class="text-bg font-bold text-lg font-headline mb-1">DM 'CHANGE'</p>
-          <p class="text-bg/55 text-xs mb-3">to begin your transformation</p>
-          <a href="https://www.instagram.com/trainwithirine" target="_blank"
-            class="text-secondary font-bold text-sm hover:underline flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.31.975.975 1.248 2.242 1.31 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.31 3.608-.975.975-2.242 1.248-3.608 1.31-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.31-.975-.975-1.248-2.242-1.31-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.31-3.608.975-.975 2.242-1.248 3.608-1.31 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.613.074-3.067.44-4.205 1.578C1.71 2.788 1.344 4.242 1.27 5.855 1.212 7.135 1.198 7.543 1.198 12c0 4.457.014 4.865.072 6.145.074 1.613.44 3.067 1.578 4.205 1.138 1.138 2.592 1.504 4.205 1.578 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.613-.074 3.067-.44 4.205-1.578 1.138-1.138 1.504-2.592 1.578-4.205.058-1.28.072-1.688.072-6.145 0-4.457-.014-4.865-.072-6.145-.074-1.613-.44-3.067-1.578-4.205C19.214 1.61 17.76 1.244 16.147 1.17 14.867 1.112 14.459 1.098 12 1.098zm0 5.838a5.064 5.064 0 1 0 0 10.128 5.064 5.064 0 0 0 0-10.128zm0 8.352a3.288 3.288 0 1 1 0-6.576 3.288 3.288 0 0 1 0 6.576zm5.338-9.87a1.185 1.185 0 1 0 0 2.37 1.185 1.185 0 0 0 0-2.37z"/></svg>
-            @trainwithirine
-          </a>
-        </div>
-      </div>
+<!-- CLOSING CTA -->
+<section id="close-cta" class="close-cta">
+  <div class="close-cta__bg"><img src="assets/images/ERIC4387_Original.webp" loading="lazy" decoding="async" alt="Irine training"/></div>
+  <div class="close-cta__inner reveal">
+    <span class="eyebrow" style="color: var(--clay);">Final step</span>
+    <h2 class="close-cta__h2">Transformation starts<br>with a <em>DM</em>.</h2>
+    <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--paper">DM 'CHANGE' on Instagram →</a>
+    <div class="close-cta__sub">@trainwithirine · replies within 24h</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a href="#top" class="brand">
+      <svg class="brand__mark" viewBox="0 0 140 100" fill="none" aria-hidden="true">
+        <path d="M 30 50 Q 30 20 60 20 Q 90 20 90 50 Q 90 80 60 80 Q 30 80 30 50 Z" stroke="currentColor" stroke-width="6"/>
+        <path d="M 50 50 Q 50 20 80 20 Q 110 20 110 50 Q 110 80 80 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Train With Irine</span>
+        <span class="brand__tag">get fit online</span>
+      </span>
+    </a>
+    <div class="footer__links">
+      <a href="#about">About</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener">Instagram</a>
     </div>
-    <div class="border-t border-secondary/20 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-bg/30">
-      <span>© 2024 Train With Irine. All Rights Reserved.</span>
-      <span>Built with ❤️ for your transformation.</span>
-    </div>
+    <div class="footer__copy">Made in Kerala · © 2026</div>
   </div>
 </footer>
 
-<!-- ===== SCRIPTS ===== -->
+<!-- STICKY MOBILE CTA -->
+<a id="mcta" href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="mcta">DM 'CHANGE' on Instagram →</a>
+
 <script>
-  // ---- Mobile menu ----
+(() => {
+  const nav = document.getElementById('nav');
   const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+  const navLinks = document.getElementById('nav-links');
+  const hero = document.querySelector('.hero');
+  const mcta = document.getElementById('mcta');
+  const closeCTA = document.getElementById('close-cta');
 
-  // ---- Quiz logic ----
-  const steps = { 1: 33, 2: 66, 3: 100 };
+  // Nav scroll state — toggles paper bg, removes dark modifier when past hero
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (y > 40) nav.classList.add('nav--scrolled');
+    else nav.classList.remove('nav--scrolled');
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom > 80) nav.classList.add('nav--dark');
+    else nav.classList.remove('nav--dark');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-  function goToStep(n) {
-    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-    const next = document.getElementById('step-' + n);
-    next.classList.add('active');
-    next.classList.remove('fade-in');
-    void next.offsetWidth; // reflow
-    next.classList.add('fade-in');
+  // Mobile menu
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }));
 
-    document.getElementById('progress-bar').style.width = steps[n] + '%';
-    document.getElementById('step-label').textContent = 'Step ' + n + ' of 3';
-    document.getElementById('step-pct').textContent = steps[n] + '%';
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hide sticky mobile CTA when closing CTA in view
+  if (closeCTA && mcta) {
+    const ctaIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { mcta.classList.toggle('mcta--hidden', e.isIntersecting); });
+    }, { threshold: 0.25 });
+    ctaIO.observe(closeCTA);
   }
 
-  function showResult() {
-    const goal = document.querySelector('input[name="goal"]:checked')?.value;
-    const experience = document.querySelector('input[name="experience"]:checked')?.value;
-    const commitment = document.querySelector('input[name="commitment"]:checked')?.value;
+  // ===== FAQ accordion =====
+  document.querySelectorAll('.faq__q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const ans = q.nextElementSibling;
+      const open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : null;
+    });
+  });
 
-    const packages = {
-      kickstart: {
-        title: '4 Week Kickstart',
-        price: '₹4,000',
-        duration: '4 weeks',
-        features: [
-          'Customised workout plan & diet',
-          'Form & technique notes',
-          'Reference videos included',
-        ]
-      },
-      transformation: {
-        title: '3 Month Transformation',
-        price: '₹15,000',
-        duration: '3 months',
-        features: [
-          'Customised diet & workout plan',
-          'Progress tracking',
-          'Weekly check-in call & WhatsApp assistance',
-          '6-week progressive plan',
-          'Form, technique notes & reference videos',
-        ]
-      },
-      consistency: {
-        title: '3 Month Consistency',
-        price: '₹25,000',
-        duration: '3 months',
-        features: [
-          '3 live sessions every 4 weeks',
-          'Deep nutrition coaching — meal timing, grocery list, recipe videos',
-          'Daily message support & weekly check-in calls',
-          'Diet monitoring & progress tracking',
-          'Plans altered accordingly',
-        ]
-      }
-    };
+  // ===== Quiz =====
+  const state = { step: 1, goal: null, exp: null, support: null };
+  const bar = document.getElementById('qbar');
+  const next = document.getElementById('qnext');
+  const back = document.getElementById('qback');
+  const qnav = document.getElementById('qnav');
 
-    // Smart recommendation logic
-    let rec = 'transformation'; // default
-    if (commitment === 'kickstart' || experience === 'beginner') rec = 'kickstart';
-    else if (commitment === 'consistency' || goal === 'competition' || experience === 'advanced') rec = 'consistency';
-    else rec = 'transformation';
+  const setStep = (n) => {
+    state.step = n;
+    document.querySelectorAll('.qstep').forEach((s, i) => s.classList.toggle('qstep--active', i === n - 1));
+    bar.style.width = (n * 25) + '%';
+    back.disabled = n === 1 || n === 4;
+    const need = { 1: 'goal', 2: 'exp', 3: 'support' };
+    next.disabled = !state[need[n]];
+    next.textContent = n === 3 ? 'See Match →' : 'Next →';
+    qnav.style.display = n === 4 ? 'none' : 'flex';
+  };
 
-    const pkg = packages[rec];
-    document.getElementById('result-title').textContent = pkg.title;
-    document.getElementById('result-price').textContent = pkg.price + ' / ' + pkg.duration;
-    document.getElementById('result-features').innerHTML = pkg.features
-      .map(f => `<li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-lg mt-0.5">check_circle</span><span>${f}</span></li>`)
-      .join('');
+  document.querySelectorAll('.qcard').forEach(card => {
+    card.addEventListener('click', () => {
+      const k = card.dataset.key, v = card.dataset.val;
+      card.parentElement.querySelectorAll('.qcard').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      state[k] = v;
+      next.disabled = false;
+    });
+  });
 
-    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-    const result = document.getElementById('step-result');
-    result.classList.add('active', 'fade-in');
-    document.getElementById('progress-bar').style.width = '100%';
-    document.getElementById('step-label').textContent = 'Complete!';
-    document.getElementById('step-pct').textContent = '100%';
+  next.addEventListener('click', () => {
+    if (state.step === 3) { computeResult(); setStep(4); }
+    else setStep(state.step + 1);
+  });
+  back.addEventListener('click', () => { if (state.step > 1) setStep(state.step - 1); });
+
+  document.getElementById('qreset').addEventListener('click', () => {
+    state.goal = state.exp = state.support = null;
+    document.querySelectorAll('.qcard').forEach(c => c.classList.remove('selected'));
+    setStep(1);
+  });
+
+  function computeResult() {
+    let pkg, desc;
+    if (state.support === 'full') {
+      pkg = 'Consistency';
+      desc = "Started and stopped before? This is built for you. Deep nutrition coaching — meal timing, grocery lists and recipe videos — plus 3 live sessions every 4 weeks, daily message support, and weekly check-in calls from both a nutritionist and your trainer. ₹25,000 over 3 months.";
+    } else if (state.support === 'independent') {
+      pkg = 'Kickstart';
+      desc = "A customised workout and diet plan built around you, with form and technique notes and reference videos. You train independently and own your accountability. ₹4,000 for 4 weeks.";
+    } else {
+      pkg = 'Transformation';
+      desc = "Customised diet and workout plan with progress tracking, a 6-week progressive plan, weekly check-in calls and WhatsApp assistance. Accountability built in. ₹15,000 over 3 months.";
+    }
+    document.getElementById('qres-name').textContent = pkg;
+    document.getElementById('qres-desc').textContent = desc;
   }
+
+  setStep(1);
+})();
 </script>
+
 </body>
 </html>
