@@ -15,6 +15,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="image" href="assets/images/opt/ERIC4432_Original-1200.webp"
+      imagesrcset="assets/images/opt/ERIC4432_Original-480.webp 480w, assets/images/opt/ERIC4432_Original-800.webp 800w, assets/images/opt/ERIC4432_Original-1200.webp 1200w, assets/images/opt/ERIC4432_Original-1800.webp 1800w"
+      imagesizes="100vw" fetchpriority="high"/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
 
@@ -35,7 +38,12 @@
 }
 
 *,*::before,*::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 12px);
+}
 body {
   margin: 0;
   background: var(--paper);
@@ -47,7 +55,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
+body.menu-open { overflow: hidden; touch-action: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
@@ -137,6 +147,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     top: calc(var(--header-h) + var(--safe-top)); bottom: 0;
     flex-direction: column; align-items: stretch; gap: 0;
     background: var(--paper); padding: 32px 24px; overflow-y: auto;
+    overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
   }
   .nav__links.open { display: flex; }
   .nav__links a {
@@ -428,7 +439,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   border-top: 1px solid rgba(250,247,242,0.15);
 }
 .mcta--hidden { transform: translateY(120%); }
-@media (max-width: 768px) { .mcta { display: block; } }
+@media (max-width: 768px) { .mcta { display: block; } .footer { padding-bottom: calc(96px + var(--safe-bottom)); } }
 
 /* ===== Reveal ===== */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
@@ -508,9 +519,14 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 <!-- HERO -->
 <header id="top" class="hero">
   <div class="hero__bg">
-    <img src="assets/images/ERIC4432_Original.webp"
+    <img src="assets/images/opt/ERIC4432_Original-1200.webp"
+         srcset="assets/images/opt/ERIC4432_Original-480.webp 480w,
+                 assets/images/opt/ERIC4432_Original-800.webp 800w,
+                 assets/images/opt/ERIC4432_Original-1200.webp 1200w,
+                 assets/images/opt/ERIC4432_Original-1800.webp 1800w"
+         sizes="100vw"
          alt="Irine, founder and coach of Train With Irine"
-         fetchpriority="high"/>
+         fetchpriority="high" decoding="async"/>
   </div>
   <div class="hero__inner wrap">
     <div class="hero__eyebrow">
@@ -561,7 +577,10 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     </div>
     <div class="mosaic reveal">
       <div class="mfeat mfeat--photo mfeat--row2">
-        <div class="mfeat__bg"><img src="assets/images/IMG_2157.webp" loading="lazy" decoding="async" alt="Irine on stage with her competition trophy and medal"/></div>
+        <div class="mfeat__bg"><img src="assets/images/opt/IMG_2157-800.webp"
+          srcset="assets/images/opt/IMG_2157-480.webp 480w, assets/images/opt/IMG_2157-800.webp 800w, assets/images/opt/IMG_2157-1200.webp 1200w"
+          sizes="(max-width: 820px) 100vw, 470px"
+          loading="lazy" decoding="async" alt="Irine on stage with her competition trophy and medal"/></div>
         <div class="mfeat__inner">
           <span class="mfeat__num">01 — On platform</span>
           <h3 class="mfeat__title">Years <em>in the trenches</em>.</h3>
@@ -719,9 +738,15 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <h2 class="section-head__title">Real people. <em>Real changes.</em></h2>
     </div>
     <div class="rgrid reveal">
-      <div><img src="assets/images/ERIC4375_Original.webp" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
-      <div><img src="assets/images/ERIC4387_Original.webp" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
-      <div><img src="assets/images/ERIC4392_Original.webp" loading="lazy" decoding="async" alt="Irine in the gym"/></div>
+      <div><img src="assets/images/opt/ERIC4375_Original-800.webp"
+        srcset="assets/images/opt/ERIC4375_Original-480.webp 480w, assets/images/opt/ERIC4375_Original-800.webp 800w, assets/images/opt/ERIC4375_Original-1200.webp 1200w"
+        sizes="(max-width: 820px) 50vw, 420px" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
+      <div><img src="assets/images/opt/ERIC4387_Original-800.webp"
+        srcset="assets/images/opt/ERIC4387_Original-480.webp 480w, assets/images/opt/ERIC4387_Original-800.webp 800w, assets/images/opt/ERIC4387_Original-1200.webp 1200w"
+        sizes="(max-width: 820px) 50vw, 420px" loading="lazy" decoding="async" alt="Irine training in the gym"/></div>
+      <div><img src="assets/images/opt/ERIC4392_Original-800.webp"
+        srcset="assets/images/opt/ERIC4392_Original-480.webp 480w, assets/images/opt/ERIC4392_Original-800.webp 800w, assets/images/opt/ERIC4392_Original-1200.webp 1200w"
+        sizes="(max-width: 820px) 50vw, 420px" loading="lazy" decoding="async" alt="Irine in the gym"/></div>
     </div>
     <div class="tquotes reveal">
       <blockquote class="tquote"><p>"The scale stayed the same for months, but after my vacation everyone noticed the difference — 'hey, you got some muscles!' I felt so happy about it."</p><span>Sooraj · Dubai</span></blockquote>
@@ -761,7 +786,9 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 
 <!-- CLOSING CTA -->
 <section id="close-cta" class="close-cta">
-  <div class="close-cta__bg"><img src="assets/images/ERIC4387_Original.webp" loading="lazy" decoding="async" alt="Irine training"/></div>
+  <div class="close-cta__bg"><img src="assets/images/opt/ERIC4387_Original-1200.webp"
+    srcset="assets/images/opt/ERIC4387_Original-800.webp 800w, assets/images/opt/ERIC4387_Original-1200.webp 1200w, assets/images/opt/ERIC4387_Original-1800.webp 1800w"
+    sizes="100vw" loading="lazy" decoding="async" alt="Irine training"/></div>
   <div class="close-cta__inner reveal">
     <span class="eyebrow" style="color: var(--clay);">Final step</span>
     <h2 class="close-cta__h2">Transformation starts<br>with a <em>DM</em>.</h2>
@@ -822,10 +849,12 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   hamburger.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', open);
   });
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     navLinks.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
   }));
 
   // Reveal on scroll
@@ -852,6 +881,14 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       ans.style.maxHeight = open ? ans.scrollHeight + 'px' : null;
     });
   });
+  // Recompute open FAQ heights on resize/rotation so answers don't clip
+  let faqRT;
+  window.addEventListener('resize', () => {
+    clearTimeout(faqRT);
+    faqRT = setTimeout(() => {
+      document.querySelectorAll('.faq__item.open .faq__a').forEach(a => { a.style.maxHeight = a.scrollHeight + 'px'; });
+    }, 120);
+  }, { passive: true });
 
   // ===== Quiz =====
   const state = { step: 1, goal: null, exp: null, support: null };
