@@ -20,3 +20,15 @@ packages.jpeg
 # OS / editor cruft
 .DS_Store
 .vercel
+
+# Unreferenced by the live site — kept locally, excluded from the repo
+# Full-size image masters (sources for the opt/ responsive variants)
+/train with irene v2/assets/images/*.webp
+# Oversized variants the page never requests
+/train with irene v2/assets/images/opt/ERIC4375_Original-1800.webp
+/train with irene v2/assets/images/opt/ERIC4392_Original-1800.webp
+/train with irene v2/assets/images/opt/IMG_2157-1800.webp
+# Logo SVGs not used on the page
+/train with irene v2/assets/logo/horizontal.svg
+/train with irene v2/assets/logo/monogram.svg
+/train with irene v2/assets/logo/wordmark.svg
