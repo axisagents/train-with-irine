@@ -14,6 +14,8 @@ node_modules/
 # Internal assets not used by the live site
 /assets/Irine_Website_QA.pages
 /assets/packages.jpeg
+Irine_Website_QA.pages
+packages.jpeg
 
 # OS / editor cruft
 .DS_Store
