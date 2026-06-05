@@ -9,7 +9,7 @@
 /.claude/
 
 # Editor config
-/.vscode/
+.vscode/
 
 # Dependencies
 node_modules/
