@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Train With Irine — Coaching in your pocket.</title>
+<meta name="description" content="1:1 fitness coaching built for your phone. Train with Irine — Kerala-based, clients in 12+ countries. Miss Kerala 2024 competitor, powerlifting background."/>
+<link rel="canonical" href="https://trainwithirine.com/mobile.html"/>
+<meta name="theme-color" content="#1A1815"/>
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg"/>
+<link rel="apple-touch-icon" href="assets/logo/favicon.svg"/>
+<link rel="mask-icon" href="assets/logo/symbol.svg" color="#1A1815"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="image" href="assets/images/opt/ERIC4432_Original-800.webp"
+      imagesrcset="assets/images/opt/ERIC4432_Original-480.webp 480w, assets/images/opt/ERIC4432_Original-800.webp 800w, assets/images/opt/ERIC4432_Original-1200.webp 1200w"
+      imagesizes="100vw" fetchpriority="high"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
+
+<style>
+/* ============================================================
+   Train With Irine — mobile-first build.
+   Base styles target a ~390px phone; min-width queries enhance up.
+   Shares the index.html design tokens (paper / ink / terracotta).
+   ============================================================ */
+:root {
+  --paper: #FAF7F2;  --paper-2: #F2EDE4;  --paper-3: #EFEAE0;
+  --ink: #1A1815;    --ink-2: #4A453E;    --ink-3: #8A8479;
+  --line: #E5DFD3;
+  --blush: #F4D5C5;  --sand: #E8DCC4;  --sage: #C8D5BD;  --sky: #C5D9E8;
+  --lilac: #DDD0E5;  --clay: #E8B89C;  --terracotta: #B8674C;
+  --olive: #8A9A6B;  --plum: #8A6E84;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --header-h: 56px;
+  --dock-h: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  /* The whole experience lives in a phone-width column, centered on big screens */
+  --app-w: 460px;
+}
+
+*,*::before,*::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 12px);
+}
+body {
+  margin: 0;
+  background: var(--ink);            /* matte frame behind the app column */
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+body.menu-open { position: fixed; left: 0; right: 0; width: 100%; overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; border-radius: 4px; }
+
+/* ---- The app column: everything sits inside this phone-width shell ---- */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-w);
+  margin: 0 auto;
+  background: var(--paper);
+  min-height: 100vh;
+  overflow: hidden;          /* clip full-bleed children to the column */
+}
+@media (min-width: 480px) {
+  .app { box-shadow: 0 40px 120px rgba(0,0,0,0.45); }
+}
+
+/* ---- Type helpers ---- */
+.display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 500;
+}
+.pad { padding-left: 22px; padding-right: 22px; }
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 26px; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .12s ease;
+  white-space: nowrap; min-height: 52px;
+}
+.btn:active { transform: scale(0.97); }
+.btn--block { display: flex; width: 100%; }
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--paper { background: var(--paper); color: var(--ink); }
+.btn--terracotta { background: var(--terracotta); color: var(--paper); }
+.btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--outline-light { background: rgba(250,247,242,0.06); color: var(--paper); border-color: rgba(250,247,242,0.45); }
+
+/* ============================================================
+   Top bar — compact, sticky, frosted
+   ============================================================ */
+.bar {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: var(--app-w); z-index: 100;
+  padding-top: var(--safe-top);
+  transition: background .3s ease, border-color .3s ease;
+  border-bottom: 1px solid transparent;
+}
+.bar--scrolled {
+  background: rgba(250, 247, 242, 0.9);
+  backdrop-filter: saturate(140%) blur(16px);
+  -webkit-backdrop-filter: saturate(140%) blur(16px);
+  border-bottom-color: var(--line);
+}
+.bar__inner {
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 18px;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--paper); }
+.bar--scrolled .brand { color: var(--ink); }
+.brand__mark { width: 30px; height: auto; flex: none; }
+.brand__name {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.26em;
+  text-transform: uppercase; font-weight: 500;
+}
+.bar__cta {
+  padding: 9px 16px; min-height: 0; font-size: 12px; font-weight: 600;
+  border-radius: 999px; background: var(--paper); color: var(--ink);
+  border: 1px solid rgba(250,247,242,0.5);
+}
+.bar--scrolled .bar__cta { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ============================================================
+   HERO — full screen, image-led
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  color: var(--paper); overflow: hidden;
+  padding: calc(var(--header-h) + var(--safe-top)) 22px calc(40px + var(--safe-bottom));
+}
+.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: contrast(1.05) saturate(0.92) brightness(0.8);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__bg img { animation: ken 20s ease-out infinite alternate; }
+}
+@keyframes ken { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+.hero__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,24,21,0.5) 0%, rgba(26,24,21,0.12) 32%, rgba(26,24,21,0.1) 52%, rgba(26,24,21,0.82) 100%);
+}
+.hero__inner { position: relative; z-index: 2; }
+.hero__pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 14px; border-radius: 999px;
+  background: rgba(250,247,242,0.12);
+  border: 1px solid rgba(250,247,242,0.25);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 22px;
+}
+.hero__pill .eyebrow { color: var(--paper); }
+.hero__dot { width: 6px; height: 6px; border-radius: 999px; background: var(--clay); }
+.hero__h1 {
+  margin: 0;
+  font-family: var(--font-display); font-size: clamp(46px, 15vw, 64px);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--paper);
+}
+.hero__h1 em { font-style: normal; color: var(--clay); }
+.hero__lede {
+  margin: 20px 0 0;
+  font-size: 16px; line-height: 1.55;
+  color: rgba(250,247,242,0.9); font-weight: 300; max-width: 38ch;
+}
+.hero__cta { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
+.hero__sub {
+  margin-top: 22px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(250,247,242,0.72); line-height: 1.7;
+}
+
+/* ============================================================
+   Stats — 2x2
+   ============================================================ */
+.stats { background: var(--ink); color: var(--paper); }
+.stats__grid { display: grid; grid-template-columns: 1fr 1fr; }
+.stats__item {
+  padding: 26px 22px;
+  border-bottom: 1px solid rgba(250,247,242,0.08);
+  border-right: 1px solid rgba(250,247,242,0.08);
+}
+.stats__item:nth-child(2n) { border-right: none; }
+.stats__item:nth-child(n+3) { border-bottom: none; }
+.stats__num { font-family: var(--font-display); font-style: italic; font-size: 46px; line-height: 0.9; color: var(--clay); font-weight: 400; }
+.stats__label {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(250,247,242,0.6); margin-top: 10px;
+}
+
+/* ---- Marquee strip ---- */
+.marquee {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden; padding: 13px 0;
+}
+.marquee__inner {
+  display: flex; gap: 30px; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3);
+  will-change: transform; transform: translateZ(0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__inner { animation: scroll 28s linear infinite; }
+}
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   Sections
+   ============================================================ */
+.section { padding-top: 64px; padding-bottom: 64px; position: relative; }
+.section--paper2 { background: var(--paper-2); }
+.section--paper3 { background: var(--paper-3); }
+.section--ink { background: var(--ink); color: var(--paper); }
+.section--ink .eyebrow { color: var(--clay); }
+
+.shead { margin-bottom: 32px; }
+.shead__title {
+  margin: 12px 0 0;
+  font-family: var(--font-display); font-size: clamp(34px, 10vw, 44px);
+  font-weight: 400; line-height: 1.02; letter-spacing: -0.015em;
+}
+.shead__title em { font-style: normal; color: var(--terracotta); }
+.section--ink .shead__title em { color: var(--clay); }
+.shead__sub { margin: 16px 0 0; font-size: 16px; line-height: 1.55; color: var(--ink-2); font-weight: 300; }
+.section--ink .shead__sub { color: rgba(250,247,242,0.78); }
+
+/* ============================================================
+   About — stacked story cards
+   ============================================================ */
+.story { display: flex; flex-direction: column; gap: 12px; }
+.scard {
+  position: relative; border-radius: 18px; overflow: hidden;
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 10px; justify-content: flex-end;
+  min-height: 168px;
+}
+.scard--clay { background: var(--clay); }
+.scard--sage { background: var(--sage); }
+.scard--sand { background: var(--sand); }
+.scard--photo { color: var(--paper); min-height: 360px; }
+.scard--photo .scard__bg { position: absolute; inset: 0; z-index: 0; }
+.scard--photo .scard__bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.72) contrast(1.05); }
+.scard--photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(26,24,21,0.72) 100%); z-index: 1; }
+.scard__inner { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 10px; }
+.scard__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+.scard__title { font-family: var(--font-display); font-size: 28px; line-height: 1.05; font-weight: 500; margin: 0; }
+.scard__title em { font-style: normal; }
+.scard__body { font-size: 14px; line-height: 1.55; opacity: 0.88; margin: 0; }
+
+/* ============================================================
+   Swipeable carousels (programmes + results)
+   ============================================================ */
+.rail {
+  display: flex; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  padding: 4px 22px 6px;
+  margin: 0 -22px;            /* bleed to the column edges */
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: center; flex: 0 0 86%; }
+
+.dots { display: flex; justify-content: center; gap: 7px; margin-top: 22px; }
+.dot { width: 7px; height: 7px; border-radius: 999px; background: var(--line); transition: background .25s, width .25s; }
+.dot.active { background: var(--terracotta); width: 20px; }
+
+/* ---- Programme cards ---- */
+.pkg {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+  padding: 28px 24px; display: flex; flex-direction: column;
+  position: relative; min-height: 100%;
+}
+.pkg--feat { border-color: var(--terracotta); box-shadow: 0 16px 40px rgba(184,103,76,0.14); }
+.pkg__badge {
+  position: absolute; top: -11px; left: 24px;
+  background: var(--clay); color: var(--ink); padding: 5px 12px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.2em;
+  text-transform: uppercase; font-weight: 500;
+}
+.pkg__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+.pkg__name { font-family: var(--font-display); font-size: 25px; font-weight: 500; margin: 0 0 6px; line-height: 1.1; }
+.pkg__price { font-family: var(--font-display); font-style: italic; font-size: 48px; line-height: 1; margin: 14px 0 4px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.pkg__per { font-family: var(--font-mono); font-style: normal; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.pkg__desc { font-size: 14px; color: var(--ink-2); margin: 14px 0 18px; }
+.pkg__list { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+.pkg__list li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); padding-left: 16px; position: relative; }
+.pkg__list li::before { content: "—"; position: absolute; left: 0; color: var(--terracotta); }
+.pkgs__note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); text-align: center; margin-top: 26px; line-height: 1.7; }
+
+/* ---- Testimonial cards ---- */
+.tcard {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+  padding: 28px 24px; display: flex; flex-direction: column; min-height: 100%;
+}
+.section--ink .tcard { background: rgba(250,247,242,0.04); border-color: rgba(250,247,242,0.12); }
+.tcard__quote { font-family: var(--font-display); font-style: italic; font-size: 21px; line-height: 1.4; margin: 0 0 18px; color: var(--ink); }
+.section--ink .tcard__quote { color: var(--paper); }
+.tcard__by { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-top: auto; }
+.tcard__mark { font-family: var(--font-display); font-size: 56px; line-height: 0; color: var(--terracotta); height: 22px; }
+
+/* ============================================================
+   Quiz — mobile-native, full-width cards
+   ============================================================ */
+.quiz__progress { height: 2px; background: var(--line); border-radius: 2px; margin-bottom: 28px; overflow: hidden; }
+.quiz__progress > span { display: block; height: 100%; background: var(--terracotta); transition: width .5s ease; width: 25%; }
+.qstep { display: none; animation: fadeUp .45s ease; }
+.qstep--active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.qstep__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+.qstep__title { font-family: var(--font-display); font-size: clamp(28px, 8vw, 36px); font-weight: 500; line-height: 1.05; margin: 0 0 26px; letter-spacing: -0.01em; }
+.qcards { display: flex; flex-direction: column; gap: 10px; }
+.qcard {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+  padding: 18px; transition: border-color .2s, background .2s, transform .12s;
+  text-align: left; display: flex; align-items: center; gap: 14px; min-height: 64px;
+}
+.qcard:active { transform: scale(0.99); }
+.qcard.selected { border-color: var(--terracotta); background: rgba(184,103,76,0.06); }
+.qcard__letter {
+  flex: none; width: 30px; height: 30px; border-radius: 999px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); transition: all .2s;
+}
+.qcard.selected .qcard__letter { background: var(--terracotta); color: var(--paper); border-color: var(--terracotta); }
+.qcard__txt { display: flex; flex-direction: column; gap: 2px; }
+.qcard__title { font-family: var(--font-display); font-size: 21px; font-weight: 500; margin: 0; line-height: 1.15; }
+.qcard__sub { font-size: 12.5px; color: var(--ink-3); margin: 0; }
+.quiz__nav { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; }
+.quiz__nav button { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); padding: 14px 4px; min-height: 48px; transition: color .2s; }
+.quiz__nav button:disabled { opacity: 0.3; pointer-events: none; }
+.qresult { background: var(--clay); border-radius: 20px; padding: 32px 24px; }
+.qresult__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.qresult__title { font-family: var(--font-display); font-size: clamp(32px, 9vw, 42px); font-weight: 500; line-height: 1; margin: 0 0 14px; }
+.qresult__title em { font-style: normal; color: var(--terracotta); }
+.qresult__desc { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 0 0 26px; }
+.qresult__cta { display: flex; flex-direction: column; gap: 10px; }
+
+/* ============================================================
+   FAQ accordion
+   ============================================================ */
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 18px;
+  text-align: left; padding: 22px 0; min-height: 60px;
+  font-family: var(--font-display); font-size: 21px; font-weight: 500; line-height: 1.25; color: var(--ink);
+}
+.faq__icon { flex: none; width: 18px; height: 18px; position: relative; }
+.faq__icon::before, .faq__icon::after { content: ""; position: absolute; background: var(--terracotta); border-radius: 2px; }
+.faq__icon::before { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); }
+.faq__icon::after { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); transition: opacity .3s ease; }
+.faq__item.open .faq__icon::after { opacity: 0; }
+.faq__a { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+.faq__a p { margin: 0 0 22px; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
+/* ============================================================
+   Closing CTA
+   ============================================================ */
+.close-cta {
+  position: relative; overflow: hidden; color: var(--paper);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 78svh;
+  padding: 64px 24px;
+}
+.close-cta__bg { position: absolute; inset: 0; z-index: 0; }
+.close-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) { .close-cta__bg img { animation: ken 20s ease-out infinite alternate; } }
+.close-cta::after { content: ""; position: absolute; inset: 0; background: rgba(26,24,21,0.78); z-index: 1; }
+.close-cta__inner { position: relative; z-index: 2; }
+.close-cta__h2 { font-family: var(--font-display); font-size: clamp(44px, 14vw, 64px); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; margin: 14px 0 28px; }
+.close-cta__h2 em { font-style: normal; color: var(--clay); }
+.close-cta__sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.62); margin-top: 22px; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer { background: var(--ink); color: var(--paper); padding: 44px 22px calc(44px + var(--dock-h) + var(--safe-bottom)); }
+.footer__brand { display: flex; align-items: center; gap: 10px; color: var(--paper); margin-bottom: 24px; }
+.footer__links { display: flex; flex-wrap: wrap; gap: 14px 24px; margin-bottom: 26px; }
+.footer__links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.66); padding: 6px 0; }
+.footer__copy { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.45); }
+
+/* ============================================================
+   Bottom app dock — the always-there thumb bar
+   ============================================================ */
+.dock {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: var(--app-w); z-index: 95;
+  background: rgba(26,24,21,0.92);
+  backdrop-filter: saturate(140%) blur(16px);
+  -webkit-backdrop-filter: saturate(140%) blur(16px);
+  border-top: 1px solid rgba(250,247,242,0.12);
+  padding: 10px 14px calc(10px + var(--safe-bottom));
+  display: flex; align-items: center; gap: 10px;
+  transition: transform .35s ease;
+}
+.dock--hidden { transform: translateX(-50%) translateY(140%); }
+.dock__price { display: flex; flex-direction: column; line-height: 1.1; padding-left: 6px; }
+.dock__price b { font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--paper); font-weight: 400; }
+.dock__price span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,247,242,0.6); }
+.dock__cta { flex: 1; background: var(--terracotta); color: var(--paper); border-radius: 999px; min-height: 50px; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.dock__cta:active { transform: scale(0.98); }
+
+/* ============================================================
+   Slide-out menu
+   ============================================================ */
+.menu {
+  position: fixed; top: 0; bottom: 0; width: 100%; z-index: 110;
+  max-width: var(--app-w); left: 50%; transform: translateX(-50%);
+  background: var(--paper);
+  padding: calc(var(--header-h) + var(--safe-top) + 24px) 28px calc(40px + var(--safe-bottom));
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none; transition: opacity .3s ease;
+}
+.menu.open { opacity: 1; pointer-events: auto; }
+.menu__close {
+  position: absolute; top: calc(var(--safe-top) + 12px); right: 16px;
+  width: 44px; height: 44px; display: grid; place-items: center; color: var(--ink);
+}
+.menu a.menu__link {
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+  font-family: var(--font-display); font-size: 30px; font-weight: 500; color: var(--ink); line-height: 1.2;
+}
+.menu__foot { margin-top: auto; padding-top: 28px; }
+
+/* ============================================================
+   Reveal on scroll
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero__bg img, .close-cta__bg img, .marquee__inner { animation: none; }
+}
+
+/* A faint "viewing on desktop" hint outside the column */
+.desk-note {
+  display: none;
+  position: fixed; left: 24px; bottom: 24px; z-index: 5;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(250,247,242,0.5); max-width: 200px; line-height: 1.8;
+}
+@media (min-width: 900px) { .desk-note { display: block; } }
+</style>
+</head>
+
+<body>
+<div class="app" id="top">
+
+  <!-- TOP BAR -->
+  <div class="bar" id="bar">
+    <div class="bar__inner">
+      <a href="#top" class="brand" aria-label="Train With Irine — home">
+        <svg class="brand__mark" viewBox="0 0 140 100" fill="none" aria-hidden="true">
+          <path d="M 30 50 Q 30 20 60 20 Q 90 20 90 50 Q 90 80 60 80 Q 30 80 30 50 Z" stroke="currentColor" stroke-width="6"/>
+          <path d="M 50 50 Q 50 20 80 20 Q 110 20 110 50 Q 110 80 80 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand__name">Train With Irine</span>
+      </a>
+      <button class="bar__cta" id="menu-open" aria-label="Open menu" aria-expanded="false">Menu</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__bg">
+      <img src="assets/images/opt/ERIC4432_Original-800.webp"
+           srcset="assets/images/opt/ERIC4432_Original-480.webp 480w,
+                   assets/images/opt/ERIC4432_Original-800.webp 800w,
+                   assets/images/opt/ERIC4432_Original-1200.webp 1200w"
+           sizes="(max-width: 480px) 100vw, 460px"
+           alt="Irine, founder and coach of Train With Irine"
+           fetchpriority="high" decoding="async"/>
+    </div>
+    <div class="hero__inner">
+      <span class="hero__pill"><span class="hero__dot"></span><span class="eyebrow">1:1 Coaching · Kerala / Global</span></span>
+      <h1 class="hero__h1">Fitness,<br>in your <em>pocket</em>.</h1>
+      <p class="hero__lede">Your body. Your discipline. Coaching one client at a time — no templates, real change, right from your phone.</p>
+      <div class="hero__cta">
+        <a href="#quiz" class="btn btn--paper btn--block">Find my programme →</a>
+        <a href="#programmes" class="btn btn--outline-light btn--block">See programmes</a>
+      </div>
+      <div class="hero__sub">12+ countries · Miss Kerala 2024 · 9.2K on Instagram</div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats__grid">
+      <div class="stats__item"><div class="stats__num">12+</div><div class="stats__label">Countries</div></div>
+      <div class="stats__item"><div class="stats__num">12</div><div class="stats__label">Week minimum</div></div>
+      <div class="stats__item"><div class="stats__num">120+</div><div class="stats__label">Clients coached</div></div>
+      <div class="stats__item"><div class="stats__num">9.2K</div><div class="stats__label">On Instagram</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__inner">
+      <span>India</span><span>—</span><span>UAE</span><span>—</span><span>UK</span><span>—</span><span>USA</span><span>—</span><span>Canada</span><span>—</span><span>Australia</span><span>—</span><span>Singapore</span><span>—</span><span>Germany</span><span>—</span><span>Qatar</span><span>—</span><span>KSA</span><span>—</span><span>Oman</span><span>—</span><span>Malaysia</span><span>—</span>
+      <span>India</span><span>—</span><span>UAE</span><span>—</span><span>UK</span><span>—</span><span>USA</span><span>—</span><span>Canada</span><span>—</span><span>Australia</span><span>—</span><span>Singapore</span><span>—</span><span>Germany</span><span>—</span><span>Qatar</span><span>—</span><span>KSA</span><span>—</span><span>Oman</span><span>—</span><span>Malaysia</span><span>—</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="section pad">
+    <div class="shead reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="shead__title">Influencer? <em>No.</em> Coach.</h2>
+      <p class="shead__sub">I'm Irine. My journey started at 18, chasing a flatter stomach — then kickboxing and powerlifting turned the gym into my happy place. That shift is exactly what I coach.</p>
+    </div>
+    <div class="story reveal">
+      <article class="scard scard--photo">
+        <div class="scard__bg"><img src="assets/images/opt/IMG_2157-800.webp"
+          srcset="assets/images/opt/IMG_2157-480.webp 480w, assets/images/opt/IMG_2157-800.webp 800w, assets/images/opt/IMG_2157-1200.webp 1200w"
+          sizes="(max-width: 480px) 100vw, 460px" loading="lazy" decoding="async"
+          alt="Irine on stage with her competition trophy and medal"/></div>
+        <div class="scard__inner">
+          <span class="scard__num">01 — On platform</span>
+          <h3 class="scard__title">Years <em>in the trenches</em>.</h3>
+          <p class="scard__body">Kickboxing, powerlifting, competition prep. Real training in real gyms — not theory.</p>
+        </div>
+      </article>
+      <article class="scard scard--clay">
+        <div class="scard__inner">
+          <span class="scard__num">02 — Philosophy</span>
+          <h3 class="scard__title">Twelve weeks <em>minimum</em>.</h3>
+          <p class="scard__body">Real change doesn't fit in four. If you want a templated PDF, this isn't it — it's about how you feel living in your body every day.</p>
+        </div>
+      </article>
+      <article class="scard scard--sage">
+        <div class="scard__inner">
+          <span class="scard__num">03 — Credentials</span>
+          <h3 class="scard__title">Miss Kerala 2024 competitor.</h3>
+          <p class="scard__body">Powerlifting coach. Stage prep specialist.</p>
+        </div>
+      </article>
+      <article class="scard scard--sand">
+        <div class="scard__inner">
+          <span class="scard__num">04 — How I work</span>
+          <h3 class="scard__title">One client at a time.</h3>
+          <p class="scard__body">Limited slots each month. Quality over volume.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section id="programmes" class="section section--paper2">
+    <div class="shead pad reveal">
+      <span class="eyebrow">Programmes</span>
+      <h2 class="shead__title">Three ways to <em>work with me</em>.</h2>
+      <p class="shead__sub">Swipe to compare. Every plan is built around you.</p>
+    </div>
+
+    <div class="rail" id="pkg-rail">
+      <article class="pkg">
+        <div class="pkg__num">01 · Kickstart</div>
+        <h3 class="pkg__name">For independent trainers</h3>
+        <div class="pkg__price">₹4,000<span class="pkg__per">4-week program</span></div>
+        <p class="pkg__desc">Beginner to advanced — you train on your own.</p>
+        <ul class="pkg__list">
+          <li>Customised workout plan &amp; diet</li>
+          <li>Form &amp; technique notes</li>
+          <li>Reference videos</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--secondary btn--block">Choose Kickstart</a>
+      </article>
+      <article class="pkg pkg--feat">
+        <div class="pkg__badge">Most picked</div>
+        <div class="pkg__num">02 · Transformation</div>
+        <h3 class="pkg__name">Coaching with accountability</h3>
+        <div class="pkg__price">₹15,000<span class="pkg__per">3-month program</span></div>
+        <p class="pkg__desc">Full-stack 1:1 attention.</p>
+        <ul class="pkg__list">
+          <li>Customised diet &amp; workout plan</li>
+          <li>Progress tracking</li>
+          <li>Weekly check-in call &amp; WhatsApp assistance</li>
+          <li>6-week progressive plan</li>
+          <li>Form, technique notes &amp; reference videos</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--terracotta btn--block">Choose Transformation</a>
+      </article>
+      <article class="pkg">
+        <div class="pkg__num">03 · Consistency</div>
+        <h3 class="pkg__name">For those who've started &amp; stopped</h3>
+        <div class="pkg__price">₹25,000<span class="pkg__per">3-month program</span></div>
+        <p class="pkg__desc">Deep nutrition coaching, fully supported.</p>
+        <ul class="pkg__list">
+          <li>3 live sessions every 4 weeks for form &amp; technique</li>
+          <li>Deep nutrition coaching — meal timing, grocery list, recipes</li>
+          <li>Daily message support</li>
+          <li>Weekly check-in calls from nutritionist &amp; trainer</li>
+          <li>Diet monitoring &amp; progress tracking</li>
+        </ul>
+        <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--secondary btn--block">Choose Consistency</a>
+      </article>
+    </div>
+    <div class="dots" id="pkg-dots" aria-hidden="true"></div>
+    <p class="pkgs__note pad">Limited slots each month<br>DM 'CHANGE' on Instagram to start</p>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section section--paper3 pad">
+    <div class="shead reveal" style="text-align:center;">
+      <span class="eyebrow">The Match · 60 seconds</span>
+      <h2 class="shead__title">Find your <em>programme</em>.</h2>
+      <p class="shead__sub">Three taps. One package built for you.</p>
+    </div>
+
+    <div class="quiz reveal">
+      <div class="quiz__progress"><span id="qbar"></span></div>
+
+      <div id="qstep-1" class="qstep qstep--active">
+        <div class="qstep__label">Step 01 / 03</div>
+        <h3 class="qstep__title">What's the goal?</h3>
+        <div class="qcards">
+          <button class="qcard" data-key="goal" data-val="fatloss"><span class="qcard__letter">A</span><span class="qcard__txt"><span class="qcard__title">Fat loss</span><span class="qcard__sub">Lose weight, keep muscle, feel lighter.</span></span></button>
+          <button class="qcard" data-key="goal" data-val="strength"><span class="qcard__letter">B</span><span class="qcard__txt"><span class="qcard__title">Build strength</span><span class="qcard__sub">Lift heavier. Build muscle. Get powerful.</span></span></button>
+          <button class="qcard" data-key="goal" data-val="recomp"><span class="qcard__letter">C</span><span class="qcard__txt"><span class="qcard__title">Recomposition</span><span class="qcard__sub">Lose fat and gain muscle at once.</span></span></button>
+          <button class="qcard" data-key="goal" data-val="prep"><span class="qcard__letter">D</span><span class="qcard__txt"><span class="qcard__title">Stage / event prep</span><span class="qcard__sub">Pageant, shoot, wedding, competition.</span></span></button>
+        </div>
+      </div>
+
+      <div id="qstep-2" class="qstep">
+        <div class="qstep__label">Step 02 / 03</div>
+        <h3 class="qstep__title">Where are you starting?</h3>
+        <div class="qcards">
+          <button class="qcard" data-key="exp" data-val="beginner"><span class="qcard__letter">A</span><span class="qcard__txt"><span class="qcard__title">Beginner</span><span class="qcard__sub">The gym still feels new.</span></span></button>
+          <button class="qcard" data-key="exp" data-val="intermediate"><span class="qcard__letter">B</span><span class="qcard__txt"><span class="qcard__title">Intermediate</span><span class="qcard__sub">I train, but I'm stuck.</span></span></button>
+          <button class="qcard" data-key="exp" data-val="advanced"><span class="qcard__letter">C</span><span class="qcard__txt"><span class="qcard__title">Advanced</span><span class="qcard__sub">I know my numbers.</span></span></button>
+        </div>
+      </div>
+
+      <div id="qstep-3" class="qstep">
+        <div class="qstep__label">Step 03 / 03</div>
+        <h3 class="qstep__title">How much support?</h3>
+        <div class="qcards">
+          <button class="qcard" data-key="support" data-val="independent"><span class="qcard__letter">A</span><span class="qcard__txt"><span class="qcard__title">Just the plan</span><span class="qcard__sub">I'll run with it and stay accountable.</span></span></button>
+          <button class="qcard" data-key="support" data-val="guided"><span class="qcard__letter">B</span><span class="qcard__txt"><span class="qcard__title">Plan + check-ins</span><span class="qcard__sub">Weekly calls &amp; WhatsApp support.</span></span></button>
+          <button class="qcard" data-key="support" data-val="full"><span class="qcard__letter">C</span><span class="qcard__txt"><span class="qcard__title">Full support</span><span class="qcard__sub">I've started &amp; stopped before.</span></span></button>
+        </div>
+      </div>
+
+      <div id="qstep-4" class="qstep">
+        <div class="qresult">
+          <div class="qresult__label">Match found</div>
+          <h3 class="qresult__title">Your programme:<br><em id="qres-name">—</em></h3>
+          <p class="qresult__desc" id="qres-desc"></p>
+          <div class="qresult__cta">
+            <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--primary btn--block">DM 'CHANGE' on Instagram →</a>
+            <button id="qreset" class="btn btn--secondary btn--block">Retake quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz__nav" id="qnav">
+        <button id="qback" disabled>← Back</button>
+        <button id="qnext" disabled>Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="section section--ink">
+    <div class="shead pad reveal">
+      <span class="eyebrow">Results</span>
+      <h2 class="shead__title">Real people. <em>Real changes.</em></h2>
+    </div>
+    <div class="rail" id="tst-rail">
+      <article class="tcard">
+        <div class="tcard__mark">”</div>
+        <p class="tcard__quote">The scale stayed the same for months, but after my vacation everyone noticed — "hey, you got some muscles!" I felt so happy.</p>
+        <div class="tcard__by">Sooraj · Dubai</div>
+      </article>
+      <article class="tcard">
+        <div class="tcard__mark">”</div>
+        <p class="tcard__quote">First time under a coach with a real plan. I've never seen my body this conditioned. Thank you for pushing me.</p>
+        <div class="tcard__by">Vinayak · Trivandrum</div>
+      </article>
+      <article class="tcard">
+        <div class="tcard__mark">”</div>
+        <p class="tcard__quote">I was always the gym girl afraid to lift heavy. Four weeks in, I'm finally comfortable trying anything new.</p>
+        <div class="tcard__by">Dia · UK</div>
+      </article>
+    </div>
+    <div class="dots" id="tst-dots" aria-hidden="true"></div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section section--paper2 pad">
+    <div class="shead reveal">
+      <span class="eyebrow">Questions</span>
+      <h2 class="shead__title">Good to <em>know</em>.</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Do you provide live sessions?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Yes. Live sessions depend on client and trainer availability — we'll find a slot that works for both of us.</p></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Who do you train?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Beginners to advanced, all genders, bodybuilders, and clients up to the age of 60.</p></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Do I need gym equipment?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Not at all. You can train at home with bands and dumbbells. And if you can get to a gym — even better.</p></div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">I'm pre-diabetic and have PCOS — can I join?<span class="faq__icon"></span></button>
+        <div class="faq__a"><p>Of course. You'll consult with our trainer and dietitian about your condition, and they'll curate your workout plan and diet accordingly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="close-cta">
+    <div class="close-cta__bg"><img src="assets/images/opt/ERIC4387_Original-800.webp"
+      srcset="assets/images/opt/ERIC4387_Original-480.webp 480w, assets/images/opt/ERIC4387_Original-800.webp 800w, assets/images/opt/ERIC4387_Original-1200.webp 1200w"
+      sizes="(max-width: 480px) 100vw, 460px" loading="lazy" decoding="async" alt="Irine training"/></div>
+    <div class="close-cta__inner reveal">
+      <span class="eyebrow" style="color: var(--clay);">Final step</span>
+      <h2 class="close-cta__h2">Starts with a <em>DM</em>.</h2>
+      <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--paper btn--block">DM 'CHANGE' on Instagram →</a>
+      <div class="close-cta__sub">@trainwithirine · replies within 24h</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <svg class="brand__mark" viewBox="0 0 140 100" fill="none" aria-hidden="true">
+        <path d="M 30 50 Q 30 20 60 20 Q 90 20 90 50 Q 90 80 60 80 Q 30 80 30 50 Z" stroke="currentColor" stroke-width="6"/>
+        <path d="M 50 50 Q 50 20 80 20 Q 110 20 110 50 Q 110 80 80 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand__name">Train With Irine</span>
+    </div>
+    <div class="footer__links">
+      <a href="#about">About</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#quiz">Find My Match</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener">Instagram</a>
+      <a href="index.html">Desktop site</a>
+    </div>
+    <div class="footer__copy">Made in Kerala · © 2026</div>
+  </footer>
+
+  <!-- BOTTOM DOCK -->
+  <div class="dock" id="dock">
+    <div class="dock__price"><b>₹4,000+</b><span>Plans from</span></div>
+    <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="dock__cta">Start now →</a>
+  </div>
+
+  <!-- SLIDE-OUT MENU -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <button class="menu__close" id="menu-close" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="#about" class="menu__link">About</a>
+    <a href="#programmes" class="menu__link">Programmes</a>
+    <a href="#quiz" class="menu__link">Find My Match</a>
+    <a href="#results" class="menu__link">Results</a>
+    <a href="#faq" class="menu__link">FAQ</a>
+    <div class="menu__foot">
+      <a href="https://instagram.com/trainwithirine" target="_blank" rel="noopener" class="btn btn--terracotta btn--block">DM 'CHANGE' on Instagram →</a>
+    </div>
+  </nav>
+
+</div>
+
+<p class="desk-note">Designed for the phone — best viewed at mobile width.</p>
+
+<script>
+(() => {
+  const bar = document.getElementById('bar');
+  const hero = document.querySelector('.hero');
+  const dock = document.getElementById('dock');
+  const closeCTA = document.querySelector('.close-cta');
+
+  // ---- Top bar: solid once you scroll past the hero ----
+  const onScroll = () => {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    bar.classList.toggle('bar--scrolled', heroBottom < 70);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---- Slide-out menu ----
+  const menu = document.getElementById('menu');
+  let lockedY = 0;
+  const lock = () => { lockedY = window.scrollY; document.body.style.top = `-${lockedY}px`; document.body.classList.add('menu-open'); };
+  const unlock = () => { document.body.classList.remove('menu-open'); document.body.style.top = ''; window.scrollTo(0, lockedY); };
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.getElementById('menu-open').setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) lock(); else unlock();
+  };
+  document.getElementById('menu-open').addEventListener('click', () => setMenu(true));
+  document.getElementById('menu-close').addEventListener('click', () => setMenu(false));
+  menu.querySelectorAll('a.menu__link, .menu__foot a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // ---- Reveal on scroll ----
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---- Hide the dock while the closing CTA is on screen ----
+  if (closeCTA && dock) {
+    const dockIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => dock.classList.toggle('dock--hidden', e.isIntersecting));
+    }, { threshold: 0.3 });
+    dockIO.observe(closeCTA);
+  }
+
+  // ---- Carousel dot indicators (programmes + results) ----
+  function wireRail(railId, dotsId) {
+    const rail = document.getElementById(railId);
+    const dotsWrap = document.getElementById(dotsId);
+    if (!rail || !dotsWrap) return;
+    const cards = Array.from(rail.children);
+    cards.forEach((_, i) => {
+      const d = document.createElement('span');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+    let raf;
+    rail.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const mid = rail.scrollLeft + rail.clientWidth / 2;
+        let active = 0, best = Infinity;
+        cards.forEach((c, i) => {
+          const center = c.offsetLeft + c.offsetWidth / 2;
+          const dist = Math.abs(center - mid);
+          if (dist < best) { best = dist; active = i; }
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === active));
+      });
+    }, { passive: true });
+  }
+  wireRail('pkg-rail', 'pkg-dots');
+  wireRail('tst-rail', 'tst-dots');
+
+  // The "Most picked" programme is the natural default — center it on load.
+  const pkgRail = document.getElementById('pkg-rail');
+  if (pkgRail && pkgRail.children[1]) {
+    const feat = pkgRail.children[1];
+    pkgRail.scrollLeft = feat.offsetLeft - (pkgRail.clientWidth - feat.offsetWidth) / 2;
+  }
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.faq__q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const ans = q.nextElementSibling;
+      const open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : null;
+    });
+  });
+  let faqRT;
+  window.addEventListener('resize', () => {
+    clearTimeout(faqRT);
+    faqRT = setTimeout(() => {
+      document.querySelectorAll('.faq__item.open .faq__a').forEach(a => { a.style.maxHeight = a.scrollHeight + 'px'; });
+    }, 120);
+  }, { passive: true });
+
+  // ---- Quiz ----
+  const state = { step: 1, goal: null, exp: null, support: null };
+  const qbar = document.getElementById('qbar');
+  const next = document.getElementById('qnext');
+  const back = document.getElementById('qback');
+  const qnav = document.getElementById('qnav');
+
+  const setStep = (n) => {
+    state.step = n;
+    document.querySelectorAll('.qstep').forEach((s, i) => s.classList.toggle('qstep--active', i === n - 1));
+    qbar.style.width = (n * 25) + '%';
+    back.disabled = n === 1 || n === 4;
+    const need = { 1: 'goal', 2: 'exp', 3: 'support' };
+    next.disabled = !state[need[n]];
+    next.textContent = n === 3 ? 'See match →' : 'Next →';
+    qnav.style.display = n === 4 ? 'none' : 'flex';
+  };
+
+  document.querySelectorAll('.qcard').forEach(card => {
+    card.addEventListener('click', () => {
+      const k = card.dataset.key, v = card.dataset.val;
+      card.parentElement.querySelectorAll('.qcard').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      state[k] = v;
+      next.disabled = false;
+    });
+  });
+
+  next.addEventListener('click', () => {
+    if (state.step === 3) { computeResult(); setStep(4); }
+    else setStep(state.step + 1);
+  });
+  back.addEventListener('click', () => { if (state.step > 1) setStep(state.step - 1); });
+
+  document.getElementById('qreset').addEventListener('click', () => {
+    state.goal = state.exp = state.support = null;
+    document.querySelectorAll('.qcard').forEach(c => c.classList.remove('selected'));
+    setStep(1);
+  });
+
+  function computeResult() {
+    let pkg, desc;
+    if (state.support === 'full') {
+      pkg = 'Consistency';
+      desc = "Started and stopped before? This is built for you. Deep nutrition coaching — meal timing, grocery lists and recipe videos — plus 3 live sessions every 4 weeks, daily message support, and weekly check-in calls from both a nutritionist and your trainer. ₹25,000 over 3 months.";
+    } else if (state.support === 'independent') {
+      pkg = 'Kickstart';
+      desc = "A customised workout and diet plan built around you, with form and technique notes and reference videos. You train independently and own your accountability. ₹4,000 for 4 weeks.";
+    } else {
+      pkg = 'Transformation';
+      desc = "Customised diet and workout plan with progress tracking, a 6-week progressive plan, weekly check-in calls and WhatsApp assistance. Accountability built in. ₹15,000 over 3 months.";
+    }
+    document.getElementById('qres-name').textContent = pkg;
+    document.getElementById('qres-desc').textContent = desc;
+  }
+
+  setStep(1);
+})();
+</script>
+
+</body>
+</html>
