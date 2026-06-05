@@ -204,17 +204,15 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 }
 
 /* ============================================================
-   Stats — 2x2
+   Stats — 3-up
    ============================================================ */
 .stats { background: var(--ink); color: var(--paper); }
-.stats__grid { display: grid; grid-template-columns: 1fr 1fr; }
+.stats__grid { display: grid; grid-template-columns: repeat(3, 1fr); }
 .stats__item {
-  padding: 26px 22px;
-  border-bottom: 1px solid rgba(250,247,242,0.08);
+  padding: 26px 12px;
   border-right: 1px solid rgba(250,247,242,0.08);
 }
-.stats__item:nth-child(2n) { border-right: none; }
-.stats__item:nth-child(n+3) { border-bottom: none; }
+.stats__item:last-child { border-right: none; }
 .stats__num { font-family: var(--font-display); font-style: italic; font-size: 46px; line-height: 0.9; color: var(--clay); font-weight: 400; }
 .stats__label {
   font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.2em;
@@ -524,7 +522,6 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <div class="stats__item"><div class="stats__num">12+</div><div class="stats__label">Countries</div></div>
       <div class="stats__item"><div class="stats__num">12</div><div class="stats__label">Week minimum</div></div>
       <div class="stats__item"><div class="stats__num">120+</div><div class="stats__label">Clients coached</div></div>
-      <div class="stats__item"><div class="stats__num">9.2K</div><div class="stats__label">On Instagram</div></div>
     </div>
   </section>
 
