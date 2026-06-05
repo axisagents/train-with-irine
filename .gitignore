@@ -8,6 +8,9 @@
 /train-with-irine/
 /.claude/
 
+# Editor config
+/.vscode/
+
 # Dependencies
 node_modules/
 
