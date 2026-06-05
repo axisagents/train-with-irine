@@ -25,9 +25,10 @@ packages.jpeg
 # Full-size image masters (sources for the opt/ responsive variants)
 /site/assets/images/*.webp
 # Oversized variants the page never requests
-/site/assets/images/opt/ERIC4375_Original-1800.webp
-/site/assets/images/opt/ERIC4392_Original-1800.webp
 /site/assets/images/opt/IMG_2157-1800.webp
+# Gallery photos dropped from the Results section (now testimonial-only)
+/site/assets/images/opt/ERIC4375_Original-*.webp
+/site/assets/images/opt/ERIC4392_Original-*.webp
 # Logo SVGs not used on the page
 /site/assets/logo/horizontal.svg
 /site/assets/logo/monogram.svg
