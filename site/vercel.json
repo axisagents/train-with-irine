@@ -1,18 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*(Mobile|iPhone|iPod|Android.*Mobile|BlackBerry|IEMobile|Opera Mini|Windows Phone).*"
-        }
-      ],
-      "destination": "/mobile.html"
-    }
-  ],
   "headers": [
     {
       "source": "/",
