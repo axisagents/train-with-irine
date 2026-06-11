@@ -319,6 +319,12 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .pkg__list li { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); padding-left: 16px; position: relative; }
 .pkg__list li::before { content: "—"; position: absolute; left: 0; color: var(--terracotta); }
 .pkgs__note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); text-align: center; margin-top: 26px; line-height: 1.7; }
+.region-toggle__wrap { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.region-toggle__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+.region-toggle { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
+.region-toggle__btn { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); background: transparent; border: 0; border-radius: 999px; padding: 9px 18px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+.region-toggle__btn.is-active { background: var(--ink); color: var(--paper); }
+@media (hover: hover) { .region-toggle__btn:not(.is-active):hover { color: var(--ink); } }
 
 /* ---- Testimonial cards ---- */
 .tcard {
@@ -585,11 +591,18 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <p class="shead__sub">Swipe to compare. Every plan is built around you.</p>
     </div>
 
-    <div class="rail" id="pkg-rail">
+    <div class="region-toggle__wrap">
+  <span class="region-toggle__label">Prices for</span>
+  <div class="region-toggle" id="region-toggle" role="group" aria-label="Choose your region for pricing">
+    <button type="button" class="region-toggle__btn is-active" data-region="inr" aria-pressed="true">India ₹</button>
+    <button type="button" class="region-toggle__btn" data-region="usd" aria-pressed="false">US &amp; Canada $</button>
+  </div>
+</div>
+<div class="rail" id="pkg-rail">
       <article class="pkg">
         <div class="pkg__num">01 · Kickstart</div>
         <h3 class="pkg__name">Start on your own</h3>
-        <div class="pkg__price">₹4,000<span class="pkg__per">4-week program</span></div>
+        <div class="pkg__price"><span class="pkg__amt" data-inr="₹4,000" data-usd="$119">₹4,000</span><span class="pkg__per">4-week program</span></div>
         <p class="pkg__desc">Beginner to advanced, you train on your own.</p>
         <ul class="pkg__list">
           <li>Customised workout plan &amp; diet</li>
@@ -602,7 +615,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         <div class="pkg__badge">Most picked</div>
         <div class="pkg__num">02 · Transformation</div>
         <h3 class="pkg__name">Coaching with accountability</h3>
-        <div class="pkg__price">₹15,000<span class="pkg__per">3-month program</span></div>
+        <div class="pkg__price"><span class="pkg__amt" data-inr="₹15,000" data-usd="$299">₹15,000</span><span class="pkg__per">3-month program</span></div>
         <p class="pkg__desc">Full-stack 1:1 attention.</p>
         <ul class="pkg__list">
           <li>1-on-1 consultation call with dietician &amp; trainer</li>
@@ -617,7 +630,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <article class="pkg">
         <div class="pkg__num">03 · Consistency</div>
         <h3 class="pkg__name">For those who've started &amp; stopped</h3>
-        <div class="pkg__price">₹25,000<span class="pkg__per">3-month program</span></div>
+        <div class="pkg__price"><span class="pkg__amt" data-inr="₹25,000" data-usd="$499">₹25,000</span><span class="pkg__per">3-month program</span></div>
         <p class="pkg__desc">Deep nutrition coaching, fully supported.</p>
         <ul class="pkg__list">
           <li>1-on-1 consultation call with dietician &amp; trainer</li>
@@ -783,7 +796,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 
   <!-- BOTTOM DOCK -->
   <div class="dock" id="dock">
-    <div class="dock__price"><b>₹4,000+</b><span>Plans from</span></div>
+    <div class="dock__price"><b class="pkg__amt" data-inr="₹4,000+" data-usd="$119+">₹4,000+</b><span>Plans from</span></div>
     <a href="https://instagram.com/trainwithirineonline" target="_blank" rel="noopener" class="dock__cta">Start now →</a>
   </div>
 
@@ -945,25 +958,62 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     setStep(1);
   });
 
-  function computeResult() {
-    let pkg, desc;
-    if (state.support === 'full') {
-      pkg = 'Consistency';
-      desc = "Started and stopped before? This is built for you. Deep nutrition coaching: meal timing, grocery lists and recipe videos, plus 3 live sessions every 4 weeks, daily message support, and weekly check-in calls from both a nutritionist and your trainer. ₹25,000 over 3 months.";
-    } else if (state.support === 'independent') {
-      pkg = 'Kickstart';
-      desc = "A customised workout and diet plan built around you, with form and technique notes and reference videos. You train independently and own your accountability. ₹4,000 for 4 weeks.";
-    } else {
-      pkg = 'Transformation';
-      desc = "Customised diet and workout plan with progress tracking, a 6-week progressive plan, weekly check-in calls and WhatsApp assistance. Accountability built in. ₹15,000 over 3 months.";
+  const PKG_DESC = {
+    Consistency: {
+      base: "Started and stopped before? This is built for you. Deep nutrition coaching: meal timing, grocery lists and recipe videos, plus 3 live sessions every 4 weeks, daily message support, and weekly check-in calls from both a nutritionist and your trainer.",
+      inr: "₹25,000 over 3 months.", usd: "$499 over 3 months."
+    },
+    Kickstart: {
+      base: "A customised workout and diet plan built around you, with form and technique notes and reference videos. You train independently and own your accountability.",
+      inr: "₹4,000 for 4 weeks.", usd: "$119 for 4 weeks."
+    },
+    Transformation: {
+      base: "Customised diet and workout plan with progress tracking, a 6-week progressive plan, weekly check-in calls and WhatsApp assistance. Accountability built in.",
+      inr: "₹15,000 over 3 months.", usd: "$299 over 3 months."
     }
-    document.getElementById('qres-name').textContent = pkg;
-    document.getElementById('qres-desc').textContent = desc;
+  };
+  let lastPkg = null;
+  function renderQuizResult() {
+    if (!lastPkg) return;
+    const region = window.PRICING_REGION === 'usd' ? 'usd' : 'inr';
+    const d = PKG_DESC[lastPkg];
+    document.getElementById('qres-name').textContent = lastPkg;
+    document.getElementById('qres-desc').textContent = d.base + ' ' + d[region];
+  }
+  window.renderQuizResult = renderQuizResult;
+  function computeResult() {
+    if (state.support === 'full') lastPkg = 'Consistency';
+    else if (state.support === 'independent') lastPkg = 'Kickstart';
+    else lastPkg = 'Transformation';
+    renderQuizResult();
   }
 
   setStep(1);
 })();
 </script>
 
+<script>
+// Region pricing toggle (India ₹ / US & Canada $)
+(function () {
+  var toggle = document.getElementById('region-toggle');
+  if (!toggle) return;
+  var amts = document.querySelectorAll('.pkg__amt');
+  toggle.addEventListener('click', function (e) {
+    var btn = e.target.closest('.region-toggle__btn');
+    if (!btn) return;
+    var region = btn.getAttribute('data-region');
+    toggle.querySelectorAll('.region-toggle__btn').forEach(function (b) {
+      var on = b === btn;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    amts.forEach(function (a) {
+      a.textContent = region === 'usd' ? a.getAttribute('data-usd') : a.getAttribute('data-inr');
+    });
+    window.PRICING_REGION = region;
+    if (typeof window.renderQuizResult === 'function') window.renderQuizResult();
+  });
+})();
+</script>
 </body>
 </html>
