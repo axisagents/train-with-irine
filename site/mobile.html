@@ -339,11 +339,28 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .tcard--case { padding: 0; overflow: hidden; }
 .tcard--case .tcard__body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
 .tcard--case .tcard__quote { font-size: 16px; line-height: 1.5; }
-.tcase__figure { margin: 0; }
-.tcase__ba { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(250,247,242,0.12); }
-.tcase__cell { margin: 0; display: flex; flex-direction: column; background: var(--ink); }
-.tcase__img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
-.tcase__label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); text-align: center; padding: 9px 0 2px; }
+.tcase__figure { margin: 0; position: relative; }
+/* nested before/after horizontal scroll (Before slide → After slide) */
+.tcase__ba {
+  display: flex; gap: 2px; background: rgba(250,247,242,0.12);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.tcase__ba::-webkit-scrollbar { display: none; }
+.tcase__cell {
+  position: relative; margin: 0;
+  flex: 0 0 100%; scroll-snap-align: start;
+  display: flex; flex-direction: column; background: var(--ink);
+}
+.tcase__img { width: 100%; aspect-ratio: 4 / 5; object-fit: contain; background: var(--ink); display: block; }
+.tcase__label {
+  position: absolute; top: 12px; left: 12px;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--paper);
+  background: rgba(10,10,10,0.55); border: 1px solid rgba(250,247,242,0.18);
+  padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+}
 
 /* ============================================================
    Quiz — mobile-native, full-width cards
@@ -739,13 +756,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/n-before-800.webp"
                  srcset="assets/images/opt/n-before-480.webp 480w, assets/images/opt/n-before-800.webp 800w, assets/images/opt/n-before-1200.webp 1200w, assets/images/opt/n-before-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Client N before strength training" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Client N before strength training" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/n-after-800.webp"
                  srcset="assets/images/opt/n-after-480.webp 480w, assets/images/opt/n-after-800.webp 800w, assets/images/opt/n-after-1200.webp 1200w, assets/images/opt/n-after-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Client N after strength training" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Client N after strength training" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
@@ -759,13 +776,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/pranav-before-800.webp"
                  srcset="assets/images/opt/pranav-before-480.webp 480w, assets/images/opt/pranav-before-800.webp 800w, assets/images/opt/pranav-before-1200.webp 1200w, assets/images/opt/pranav-before-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Pranav before training" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Pranav before training" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/pranav-after-800.webp"
                  srcset="assets/images/opt/pranav-after-480.webp 480w, assets/images/opt/pranav-after-800.webp 800w, assets/images/opt/pranav-after-1200.webp 1200w, assets/images/opt/pranav-after-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Pranav after training" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Pranav after training" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
@@ -779,13 +796,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/sneha-before-800.webp"
                  srcset="assets/images/opt/sneha-before-480.webp 480w, assets/images/opt/sneha-before-800.webp 800w, assets/images/opt/sneha-before-1200.webp 1200w, assets/images/opt/sneha-before-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Sneha before her weight-loss journey" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Sneha before her weight-loss journey" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/sneha-after-800.webp"
                  srcset="assets/images/opt/sneha-after-480.webp 480w, assets/images/opt/sneha-after-800.webp 800w, assets/images/opt/sneha-after-1200.webp 1200w, assets/images/opt/sneha-after-1800.webp 1800w"
-                 sizes="43vw" class="tcase__img" alt="Sneha after her weight-loss journey" loading="lazy"/>
+                 sizes="86vw" class="tcase__img" alt="Sneha after her weight-loss journey" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
