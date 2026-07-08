@@ -402,6 +402,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   scrollbar-width: none;
 }
 .tcases::-webkit-scrollbar { display: none; }
+.trail + .trail { margin-top: 44px; }
+.trail__label { display: block; margin: 0 2px 16px; }
 .tcase {
   flex: 0 0 min(560px, 82vw); scroll-snap-align: start;
   display: flex; flex-direction: column;
@@ -791,18 +793,9 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <span class="eyebrow">Results</span>
       <h2 class="section-head__title">Real people. <em>Real changes.</em></h2>
     </div>
-    <div class="tcases reveal">
-      <article class="tcase tcase--single tcase--s2">
-        <figure class="tcase__figure">
-          <img src="assets/images/opt/reshma-sooraj-800.webp"
-               srcset="assets/images/opt/reshma-sooraj-480.webp 480w, assets/images/opt/reshma-sooraj-800.webp 800w, assets/images/opt/reshma-sooraj-1200.webp 1200w, assets/images/opt/reshma-sooraj-1800.webp 1800w"
-               sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Reshma and Sooraj, coaching clients in Dubai" loading="lazy"/>
-        </figure>
-        <div class="tcase__body">
-          <p class="tcase__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
-          <div class="tcase__by">Reshma &amp; Sooraj · Dubai</div>
-        </div>
-      </article>
+    <div class="trail reveal">
+      <span class="eyebrow trail__label">Transformations</span>
+      <div class="tcases">
       <article class="tcase tcase--ba tcase--s4">
         <div class="tcase__ba">
           <figure class="tcase__cell">
@@ -863,6 +856,22 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <div class="tcase__by">Sneha · Kottayam</div>
         </div>
       </article>
+      </div>
+    </div>
+    <div class="trail reveal">
+      <span class="eyebrow trail__label">In their words</span>
+      <div class="tcases">
+      <article class="tcase tcase--single tcase--s2">
+        <figure class="tcase__figure">
+          <img src="assets/images/opt/reshma-sooraj-800.webp"
+               srcset="assets/images/opt/reshma-sooraj-480.webp 480w, assets/images/opt/reshma-sooraj-800.webp 800w, assets/images/opt/reshma-sooraj-1200.webp 1200w, assets/images/opt/reshma-sooraj-1800.webp 1800w"
+               sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Reshma and Sooraj, coaching clients in Dubai" loading="lazy"/>
+        </figure>
+        <div class="tcase__body">
+          <p class="tcase__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
+          <div class="tcase__by">Reshma &amp; Sooraj · Dubai</div>
+        </div>
+      </article>
       <article class="tcase tcase--single tcase--s2">
         <figure class="tcase__figure">
           <img src="assets/images/opt/sooraj-800.webp"
@@ -886,6 +895,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <div class="tcase__by">Dia · UK</div>
         </div>
       </article>
+      </div>
     </div>
   </div>
 </section>

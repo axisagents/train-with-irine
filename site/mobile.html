@@ -292,6 +292,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 }
 .rail::-webkit-scrollbar { display: none; }
 .rail > * { scroll-snap-align: center; flex: 0 0 86%; }
+.rail-label { margin: 0 0 14px; }
+.rail-label--gap { margin-top: 40px; }
 
 .dots { display: flex; justify-content: center; gap: 7px; margin-top: 22px; }
 .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--line); transition: background .25s, width .25s; }
@@ -739,18 +741,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <span class="eyebrow">Results</span>
       <h2 class="shead__title">Real people. <em>Real changes.</em></h2>
     </div>
-    <div class="rail" id="tst-rail">
-      <article class="tcard tcard--case">
-        <figure class="tcase__figure">
-          <img src="assets/images/opt/reshma-sooraj-800.webp"
-               srcset="assets/images/opt/reshma-sooraj-480.webp 480w, assets/images/opt/reshma-sooraj-800.webp 800w, assets/images/opt/reshma-sooraj-1200.webp 1200w, assets/images/opt/reshma-sooraj-1800.webp 1800w"
-               sizes="86vw" class="tcase__img" alt="Reshma and Sooraj, coaching clients in Dubai" loading="lazy"/>
-        </figure>
-        <div class="tcard__body">
-          <p class="tcard__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
-          <div class="tcard__by">Reshma &amp; Sooraj · Dubai</div>
-        </div>
-      </article>
+    <div class="rail-label pad reveal"><span class="eyebrow" style="color: var(--clay);">Transformations</span></div>
+    <div class="rail" id="tst-rail-ba">
       <article class="tcard tcard--case">
         <div class="tcase__ba">
           <figure class="tcase__cell">
@@ -811,6 +803,21 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <div class="tcard__by">Sneha · Kottayam</div>
         </div>
       </article>
+    </div>
+    <div class="dots" id="tst-dots-ba" aria-hidden="true"></div>
+    <div class="rail-label rail-label--gap pad reveal"><span class="eyebrow" style="color: var(--clay);">In their words</span></div>
+    <div class="rail" id="tst-rail-plain">
+      <article class="tcard tcard--case">
+        <figure class="tcase__figure">
+          <img src="assets/images/opt/reshma-sooraj-800.webp"
+               srcset="assets/images/opt/reshma-sooraj-480.webp 480w, assets/images/opt/reshma-sooraj-800.webp 800w, assets/images/opt/reshma-sooraj-1200.webp 1200w, assets/images/opt/reshma-sooraj-1800.webp 1800w"
+               sizes="86vw" class="tcase__img" alt="Reshma and Sooraj, coaching clients in Dubai" loading="lazy"/>
+        </figure>
+        <div class="tcard__body">
+          <p class="tcard__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
+          <div class="tcard__by">Reshma &amp; Sooraj · Dubai</div>
+        </div>
+      </article>
       <article class="tcard tcard--case">
         <figure class="tcase__figure">
           <img src="assets/images/opt/sooraj-800.webp"
@@ -833,7 +840,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         <div class="tcard__by">Dia · UK</div>
       </article>
     </div>
-    <div class="dots" id="tst-dots" aria-hidden="true"></div>
+    <div class="dots" id="tst-dots-plain" aria-hidden="true"></div>
   </section>
 
   <!-- FAQ -->
@@ -993,7 +1000,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     }, { passive: true });
   }
   wireRail('pkg-rail', 'pkg-dots');
-  wireRail('tst-rail', 'tst-dots');
+  wireRail('tst-rail-ba', 'tst-dots-ba');
+  wireRail('tst-rail-plain', 'tst-dots-plain');
 
   // The "Most picked" programme is the natural default — center it on load.
   const pkgRail = document.getElementById('pkg-rail');
