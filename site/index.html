@@ -394,11 +394,26 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 }
 
 /* ===== Results ===== */
-.tquotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.tquote { border-left: 1px solid var(--terracotta); padding-left: 24px; }
-.tquote p { font-family: var(--font-display); font-style: italic; font-size: 22px; line-height: 1.45; margin: 0 0 16px; color: var(--ink); }
-.tquote span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
-@media (max-width: 820px) { .tquotes { grid-template-columns: 1fr; gap: 32px; } }
+.tcases { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; align-items: stretch; }
+.tcase { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.tcase--s2 { grid-column: span 2; }
+.tcase--s3 { grid-column: span 3; }
+.tcase--s4 { grid-column: span 4; }
+.tcase__figure { margin: 0; }
+.tcase__ba { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); }
+.tcase__cell { margin: 0; display: flex; flex-direction: column; background: var(--paper); }
+.tcase__img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+.tcase__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); text-align: center; padding: 10px 0 2px; }
+.tcase__body { display: flex; flex-direction: column; flex: 1; padding: 22px 22px 24px; }
+.tcase--text .tcase__body { border-left: 2px solid var(--terracotta); }
+.tcase__quote { font-family: var(--font-display); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink); margin: 0 0 16px; }
+.tcase--s3 .tcase__quote, .tcase--s4 .tcase__quote { font-size: 16px; }
+.tcase--text .tcase__quote { font-size: 19px; }
+.tcase__by { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin-top: auto; }
+@media (max-width: 820px) {
+  .tcases { grid-template-columns: 1fr; gap: 22px; }
+  .tcase--s2, .tcase--s3, .tcase--s4 { grid-column: auto; }
+}
 
 /* ===== Closing CTA ===== */
 .close-cta {
@@ -751,10 +766,101 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <span class="eyebrow">Results</span>
       <h2 class="section-head__title">Real people. <em>Real changes.</em></h2>
     </div>
-    <div class="tquotes reveal">
-      <blockquote class="tquote"><p>"The scale stayed the same for months, but after my vacation everyone noticed the difference: 'hey, you got some muscles!' I felt so happy about it."</p><span>Sooraj · Dubai</span></blockquote>
-      <blockquote class="tquote"><p>"I've worked out for years, but it was my first time under a coach with a real plan. I've never seen my body this conditioned. Thank you for pushing me."</p><span>Vinayak · Trivandrum</span></blockquote>
-      <blockquote class="tquote"><p>"I was always the gym girl afraid to lift heavy. Four weeks in, I no longer stop myself from trying anything new. I'm finally comfortable in the gym."</p><span>Dia · UK</span></blockquote>
+    <div class="tcases reveal">
+      <article class="tcase tcase--single tcase--s2">
+        <figure class="tcase__figure">
+          <img src="assets/images/opt/reshma-sooraj-800.webp"
+               srcset="assets/images/opt/reshma-sooraj-480.webp 480w, assets/images/opt/reshma-sooraj-800.webp 800w, assets/images/opt/reshma-sooraj-1200.webp 1200w, assets/images/opt/reshma-sooraj-1800.webp 1800w"
+               sizes="(max-width: 820px) 90vw, 22vw" class="tcase__img" alt="Reshma and Sooraj, coaching clients in Dubai" loading="lazy"/>
+        </figure>
+        <div class="tcase__body">
+          <p class="tcase__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
+          <div class="tcase__by">Reshma &amp; Sooraj · Dubai</div>
+        </div>
+      </article>
+      <article class="tcase tcase--ba tcase--s4">
+        <div class="tcase__ba">
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/n-before-800.webp"
+                 srcset="assets/images/opt/n-before-480.webp 480w, assets/images/opt/n-before-800.webp 800w, assets/images/opt/n-before-1200.webp 1200w, assets/images/opt/n-before-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 16vw" class="tcase__img" alt="Client N before strength training" loading="lazy"/>
+            <figcaption class="tcase__label">Before</figcaption>
+          </figure>
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/n-after-800.webp"
+                 srcset="assets/images/opt/n-after-480.webp 480w, assets/images/opt/n-after-800.webp 800w, assets/images/opt/n-after-1200.webp 1200w, assets/images/opt/n-after-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 16vw" class="tcase__img" alt="Client N after strength training" loading="lazy"/>
+            <figcaption class="tcase__label">After</figcaption>
+          </figure>
+        </div>
+        <div class="tcase__body">
+          <p class="tcase__quote">"I used to be intimidated by gyms and would always stick to the treadmill. Working with Irine changed that: she pushed me out of my comfort zone into strength training, and for the first time I saw real results while building a genuinely healthier relationship with my body. She strikes the right balance between challenging you to give your all and pacing things for sustainable, long-term change. I highly recommend her, especially if you're new to lifting."</p>
+          <div class="tcase__by">N · Bangalore</div>
+        </div>
+      </article>
+      <article class="tcase tcase--ba tcase--s3">
+        <div class="tcase__ba">
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/pranav-before-800.webp"
+                 srcset="assets/images/opt/pranav-before-480.webp 480w, assets/images/opt/pranav-before-800.webp 800w, assets/images/opt/pranav-before-1200.webp 1200w, assets/images/opt/pranav-before-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 12vw" class="tcase__img" alt="Pranav before training" loading="lazy"/>
+            <figcaption class="tcase__label">Before</figcaption>
+          </figure>
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/pranav-after-800.webp"
+                 srcset="assets/images/opt/pranav-after-480.webp 480w, assets/images/opt/pranav-after-800.webp 800w, assets/images/opt/pranav-after-1200.webp 1200w, assets/images/opt/pranav-after-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 12vw" class="tcase__img" alt="Pranav after training" loading="lazy"/>
+            <figcaption class="tcase__label">After</figcaption>
+          </figure>
+        </div>
+        <div class="tcase__body">
+          <p class="tcase__quote">"For years, I struggled to achieve my fitness goals while balancing work and my creative commitments. Irine created a tailored approach that helped me build a sustainable system, one that was not only effective but also ensured I didn't burn out in the process. Her guidance made fitness feel achievable even with a demanding schedule. I would highly recommend her to anyone looking to make a lasting change and turn things around."</p>
+          <div class="tcase__by">Pranav · Film Maker</div>
+        </div>
+      </article>
+      <article class="tcase tcase--ba tcase--s3">
+        <div class="tcase__ba">
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/sneha-before-800.webp"
+                 srcset="assets/images/opt/sneha-before-480.webp 480w, assets/images/opt/sneha-before-800.webp 800w, assets/images/opt/sneha-before-1200.webp 1200w, assets/images/opt/sneha-before-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 12vw" class="tcase__img" alt="Sneha before her weight-loss journey" loading="lazy"/>
+            <figcaption class="tcase__label">Before</figcaption>
+          </figure>
+          <figure class="tcase__cell">
+            <img src="assets/images/opt/sneha-after-800.webp"
+                 srcset="assets/images/opt/sneha-after-480.webp 480w, assets/images/opt/sneha-after-800.webp 800w, assets/images/opt/sneha-after-1200.webp 1200w, assets/images/opt/sneha-after-1800.webp 1800w"
+                 sizes="(max-width: 820px) 45vw, 12vw" class="tcase__img" alt="Sneha after her weight-loss journey" loading="lazy"/>
+            <figcaption class="tcase__label">After</figcaption>
+          </figure>
+        </div>
+        <div class="tcase__body">
+          <p class="tcase__quote">"I am very very thankful to you as my personal trainer for my weight loss journey. Through your coaching, I learned how to build a stronger version of myself both physically and mentally. Your motivation and dedication helped me to achieve my biggest milestone in my life. You are the best trainer to me!"</p>
+          <div class="tcase__by">Sneha · Kottayam</div>
+        </div>
+      </article>
+      <article class="tcase tcase--single tcase--s2">
+        <figure class="tcase__figure">
+          <img src="assets/images/opt/sooraj-800.webp"
+               srcset="assets/images/opt/sooraj-480.webp 480w, assets/images/opt/sooraj-800.webp 800w, assets/images/opt/sooraj-1200.webp 1200w, assets/images/opt/sooraj-1800.webp 1800w"
+               sizes="(max-width: 820px) 90vw, 22vw" class="tcase__img" alt="Sooraj — client transformation in Dubai" loading="lazy"/>
+        </figure>
+        <div class="tcase__body">
+          <p class="tcase__quote">"I was worried because the scale remained the same even after months, but when I got back to work and to family after vacation, they noticed the difference and appreciated my new physique. Everyone around here was like, 'hey you got some muscles', and I felt so happy about it."</p>
+          <div class="tcase__by">Sooraj · Dubai</div>
+        </div>
+      </article>
+      <article class="tcase tcase--text tcase--s2">
+        <div class="tcase__body">
+          <p class="tcase__quote">"I've worked out for years, but it was my first time under a coach with a real plan. I've never seen my body this conditioned. Thank you for pushing me."</p>
+          <div class="tcase__by">Vinayak · Trivandrum</div>
+        </div>
+      </article>
+      <article class="tcase tcase--text tcase--s2">
+        <div class="tcase__body">
+          <p class="tcase__quote">"I was always the gym girl afraid to lift heavy. Four weeks in, I no longer stop myself from trying anything new. I'm finally comfortable in the gym."</p>
+          <div class="tcase__by">Dia · UK</div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
