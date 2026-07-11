@@ -405,23 +405,19 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .trail + .trail { margin-top: 44px; }
 .trail__label { display: block; margin: 0 2px 16px; }
 .tcase {
-  flex: 0 0 min(560px, 82vw); scroll-snap-align: start;
+  flex: 0 0 min(680px, 88vw); scroll-snap-align: start;
   display: flex; flex-direction: column;
   background: var(--paper); border: 1px solid var(--line);
   border-radius: 16px; overflow: hidden;
 }
 .tcase__figure { margin: 0; position: relative; }
-/* nested before/after horizontal scroll (Before slide → After slide) */
+/* before/after shown side by side (Before left, After right) */
 .tcase__ba {
-  display: flex; gap: 2px; background: var(--line);
-  overflow-x: auto; scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
-  scrollbar-width: none;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--line);
 }
-.tcase__ba::-webkit-scrollbar { display: none; }
 .tcase__cell {
   position: relative; margin: 0;
-  flex: 0 0 100%; scroll-snap-align: start;
   display: flex; flex-direction: column; background: var(--paper);
 }
 .tcase__img { width: 100%; aspect-ratio: 4 / 5; object-fit: contain; background: var(--paper); display: block; }
@@ -799,13 +795,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/n-before-800.webp"
                  srcset="assets/images/opt/n-before-480.webp 480w, assets/images/opt/n-before-800.webp 800w, assets/images/opt/n-before-1200.webp 1200w, assets/images/opt/n-before-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Client N before strength training" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Client N before strength training" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/n-after-800.webp"
                  srcset="assets/images/opt/n-after-480.webp 480w, assets/images/opt/n-after-800.webp 800w, assets/images/opt/n-after-1200.webp 1200w, assets/images/opt/n-after-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Client N after strength training" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Client N after strength training" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
@@ -819,13 +815,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/pranav-before-800.webp"
                  srcset="assets/images/opt/pranav-before-480.webp 480w, assets/images/opt/pranav-before-800.webp 800w, assets/images/opt/pranav-before-1200.webp 1200w, assets/images/opt/pranav-before-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Pranav before training" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Pranav before training" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/pranav-after-800.webp"
                  srcset="assets/images/opt/pranav-after-480.webp 480w, assets/images/opt/pranav-after-800.webp 800w, assets/images/opt/pranav-after-1200.webp 1200w, assets/images/opt/pranav-after-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Pranav after training" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Pranav after training" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
@@ -839,13 +835,13 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           <figure class="tcase__cell">
             <img src="assets/images/opt/sneha-before-800.webp"
                  srcset="assets/images/opt/sneha-before-480.webp 480w, assets/images/opt/sneha-before-800.webp 800w, assets/images/opt/sneha-before-1200.webp 1200w, assets/images/opt/sneha-before-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Sneha before her weight-loss journey" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Sneha before her weight-loss journey" loading="lazy"/>
             <figcaption class="tcase__label">Before</figcaption>
           </figure>
           <figure class="tcase__cell">
             <img src="assets/images/opt/sneha-after-800.webp"
                  srcset="assets/images/opt/sneha-after-480.webp 480w, assets/images/opt/sneha-after-800.webp 800w, assets/images/opt/sneha-after-1200.webp 1200w, assets/images/opt/sneha-after-1800.webp 1800w"
-                 sizes="(max-width: 820px) 84vw, 560px" class="tcase__img" alt="Sneha after her weight-loss journey" loading="lazy"/>
+                 sizes="(max-width: 820px) 42vw, 340px" class="tcase__img" alt="Sneha after her weight-loss journey" loading="lazy"/>
             <figcaption class="tcase__label">After</figcaption>
           </figure>
         </div>
