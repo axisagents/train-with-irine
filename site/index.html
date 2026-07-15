@@ -294,7 +294,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   color: var(--ink); transition: transform .3s ease;
 }
 @media (hover: hover) { .mfeat:hover { transform: translateY(-2px); } }
-.mfeat--clay { background: var(--clay); }
+.mfeat--clay { background: var(--clay); justify-content: flex-start; }
 .mfeat--sage { background: var(--sage); }
 .mfeat--blush { background: var(--blush); }
 .mfeat--sand { background: var(--sand); }
@@ -308,6 +308,10 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .mfeat__title { font-family: var(--font-display); font-size: 32px; line-height: 1.05; font-weight: 500; margin: 0; }
 .mfeat__title em { font-style: normal; }
 .mfeat__body { font-size: 14px; line-height: 1.55; opacity: 0.85; margin: 0; }
+.mfeat__body + .mfeat__body { margin-top: 12px; }
+.mfeat__creds { list-style: none; margin: 4px 0 0; padding: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.82; }
+.mfeat__creds li { padding: 9px 0; border-top: 1px solid rgba(0,0,0,0.12); }
+.mfeat__creds li:first-child { border-top: none; padding-top: 0; }
 .mfeat--sage .mfeat__title em { color: var(--terracotta); }
 .mfeat--span2 { grid-column: span 2; }
 .mfeat--row2 { grid-row: span 2; }
@@ -599,7 +603,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
       <a href="#quiz" class="btn btn--paper">Find My Programme →</a>
       <a href="#programmes" class="btn btn--outline-light">See Programmes</a>
     </div>
-    <div class="hero__sub">12+ countries · Miss Kerala 2024 · 9,285 on Instagram</div>
+    <div class="hero__sub">12+ countries · Miss Kerala 2024</div>
   </div>
   <div class="hero__scroll">
     <span>Scroll</span>
@@ -648,21 +652,26 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         <div class="mfeat__inner">
           <span class="mfeat__num">02 · Philosophy</span>
           <h3 class="mfeat__title">Twelve weeks <em>minimum</em>. Real change doesn't fit in four.</h3>
-          <p class="mfeat__body">If you want a templated PDF, this isn't it. Real transformation is about how you feel living in your body every day, sustainable, not restrictive.</p>
+          <p class="mfeat__body">I believe fitness should make you stronger, healthier, and more confident — not smaller or exhausted. My coaching blends science-backed training, sustainable nutrition, and athlete discipline to build a body that performs in real life.</p>
         </div>
       </div>
       <div class="mfeat mfeat--sage">
         <div class="mfeat__inner">
           <span class="mfeat__num">03 · Credentials</span>
-          <h3 class="mfeat__title">Miss Kerala 2024, <em>kickboxer</em>.</h3>
-          <p class="mfeat__body">Kickboxing and powerlifting coach.</p>
+          <h3 class="mfeat__title">Credentials.</h3>
+          <ul class="mfeat__creds">
+            <li>Transformation Coach</li>
+            <li>Miss Kerala 2024</li>
+            <li>Kickboxer</li>
+            <li>Powerlifter</li>
+          </ul>
         </div>
       </div>
       <div class="mfeat mfeat--sand">
         <div class="mfeat__inner">
           <span class="mfeat__num">04 · How I work</span>
-          <h3 class="mfeat__title">One client at a time.</h3>
-          <p class="mfeat__body">Limited slots each month. Quality over volume.</p>
+          <h3 class="mfeat__title">For people serious about <em>change</em>.</h3>
+          <p class="mfeat__body">This coaching is for people committed to improving their health, performance, and lifestyle. No quick fixes, no trial mindset — just consistent work and meaningful results.</p>
         </div>
       </div>
     </div>
@@ -883,15 +892,6 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
           </span>
           <p class="tcase__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
           <div class="tcase__by">Reshma &amp; Sooraj · Dubai</div>
-        </div>
-      </article>
-      <article class="tcase tcase--quote">
-        <div class="tcase__body">
-          <span class="tavatar">
-            <img src="assets/images/opt/sooraj-480.webp" sizes="64px" class="tavatar__img" alt="Sooraj — client transformation in Dubai" loading="lazy"/>
-          </span>
-          <p class="tcase__quote">"I was worried because the scale remained the same even after months, but when I got back to work and to family after vacation, they noticed the difference and appreciated my new physique. Everyone around here was like, 'hey you got some muscles', and I felt so happy about it."</p>
-          <div class="tcase__by">Sooraj · Dubai</div>
         </div>
       </article>
       <article class="tcase tcase--quote">

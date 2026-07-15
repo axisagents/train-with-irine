@@ -265,7 +265,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   display: flex; flex-direction: column; gap: 10px; justify-content: flex-end;
   min-height: 168px;
 }
-.scard--clay { background: var(--clay); }
+.scard--clay { background: var(--clay); justify-content: flex-start; overflow: visible; height: auto; }
 .scard--sage { background: var(--sage); }
 .scard--sand { background: var(--sand); }
 .scard--photo { color: var(--paper); min-height: 360px; }
@@ -277,6 +277,10 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .scard__title { font-family: var(--font-display); font-size: 28px; line-height: 1.05; font-weight: 500; margin: 0; }
 .scard__title em { font-style: normal; }
 .scard__body { font-size: 14px; line-height: 1.55; opacity: 0.88; margin: 0; }
+.scard__body + .scard__body { margin-top: 12px; }
+.scard__creds { list-style: none; margin: 4px 0 0; padding: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+.scard__creds li { padding: 9px 0; border-top: 1px solid rgba(0,0,0,0.12); }
+.scard__creds li:first-child { border-top: none; padding-top: 0; }
 .scard--sage .scard__title em { color: var(--terracotta); }
 
 /* ============================================================
@@ -555,7 +559,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         <a href="#quiz" class="btn btn--paper btn--block">Find my programme →</a>
         <a href="#programmes" class="btn btn--outline-light btn--block">See programmes</a>
       </div>
-      <div class="hero__sub">12+ countries · Miss Kerala 2024 · 9.2K on Instagram</div>
+      <div class="hero__sub">12+ countries · Miss Kerala 2024</div>
     </div>
   </header>
 
@@ -599,21 +603,26 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         <div class="scard__inner">
           <span class="scard__num">02 · Philosophy</span>
           <h3 class="scard__title">Twelve weeks <em>minimum</em>.</h3>
-          <p class="scard__body">Real change doesn't fit in four. If you want a templated PDF, this isn't it. It's about how you feel living in your body every day.</p>
+          <p class="scard__body">I believe fitness should make you stronger, healthier, and more confident — not smaller or exhausted. My coaching blends science-backed training, sustainable nutrition, and athlete discipline to build a body that performs in real life.</p>
         </div>
       </article>
       <article class="scard scard--sage">
         <div class="scard__inner">
           <span class="scard__num">03 · Credentials</span>
-          <h3 class="scard__title">Miss Kerala 2024, <em>kickboxer</em>.</h3>
-          <p class="scard__body">Kickboxing and powerlifting coach.</p>
+          <h3 class="scard__title">Credentials.</h3>
+          <ul class="scard__creds">
+            <li>Transformation Coach</li>
+            <li>Miss Kerala 2024</li>
+            <li>Kickboxer</li>
+            <li>Powerlifter</li>
+          </ul>
         </div>
       </article>
       <article class="scard scard--sand">
         <div class="scard__inner">
           <span class="scard__num">04 · How I work</span>
-          <h3 class="scard__title">One client at a time.</h3>
-          <p class="scard__body">Limited slots each month. Quality over volume.</p>
+          <h3 class="scard__title">For people serious about <em>change</em>.</h3>
+          <p class="scard__body">This coaching is for people committed to improving their health, performance, and lifestyle. No quick fixes, no trial mindset — just consistent work and meaningful results.</p>
         </div>
       </article>
     </div>
@@ -828,13 +837,6 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
         </span>
         <p class="tcard__quote">"Training with Irine was a wonderful experience. She is knowledgeable, motivating, and always made us feel comfortable while helping us improve our strength and confidence. We truly enjoyed our fitness journey with her and would highly recommend her to anyone looking for a supportive and dedicated trainer."</p>
         <div class="tcard__by">Reshma &amp; Sooraj · Dubai</div>
-      </article>
-      <article class="tcard">
-        <span class="tavatar">
-          <img src="assets/images/opt/sooraj-480.webp" sizes="56px" class="tavatar__img" alt="Sooraj — client transformation in Dubai" loading="lazy"/>
-        </span>
-        <p class="tcard__quote">"I was worried because the scale remained the same even after months, but when I got back to work and to family after vacation, they noticed the difference and appreciated my new physique. Everyone around here was like, 'hey you got some muscles', and I felt so happy about it."</p>
-        <div class="tcard__by">Sooraj · Dubai</div>
       </article>
       <article class="tcard">
         <span class="tavatar tavatar--icon" aria-hidden="true">
